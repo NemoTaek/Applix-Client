@@ -1,0 +1,29 @@
+nav {
+  text-align: center;
+  line-height: 38px;
+  width: 100%;
+}
+
+nav ul {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+nav li {
+  flex: 1;
+}
+
+nav a {
+  width: 100%;
+  display: inline-block;
+  color: black;
+  text-decoration: none;
+  padding: 5px;
+}
+
+nav a.selected {
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  color: darkblue;
+}
