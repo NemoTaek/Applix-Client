@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 // pages
 import Main from "./pages/Main";
+import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
 
@@ -26,19 +27,19 @@ class App extends Component {
         <header>
           <Nav isLogin={isLogin} />
         </header>
-        <div className="body"></div>
-        <Switch>
-          <Route path="/login">
-            {/* <Login isLogin={isLogin} onLogin={this.onLogin} /> */}
-          </Route>
-          <Route path="/mypage">{/* <Mypage /> */}</Route>
-          {/* <Route path="/signup" component={Signup} /> */}
-          <Route path="signup" />
-          <Route path="/findtheater" />
-          <Route path="/board" />
-          <Route path="/movielist" />
-          <Route exact path="/" component={Main} />
-        </Switch>
+        <div className="contents">
+          <Switch>
+            <Route path="/login">
+              <Login isLogin={isLogin} onLogin={this.onLogin} />
+            </Route>
+            <Route path="/mypage">{/* <Mypage /> */}</Route>
+            <Route path="signup" />
+            <Route path="/findtheater" />
+            <Route path="/board" />
+            <Route path="/movielist" />
+            <Route exact path="/" component={Main} />
+          </Switch>
+        </div>
         <footer></footer>
       </div>
     );

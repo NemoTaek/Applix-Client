@@ -33,7 +33,7 @@ class Nav extends Component {
             {isLogin ? (
               <>
                 <li>
-                  <NavLink to="/" activeClassName="selected">
+                  <NavLink to="/logout" activeClassName="selected">
                     로그아웃
                   </NavLink>
                 </li>
