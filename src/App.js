@@ -6,10 +6,12 @@ import Main from "./pages/Main";
 import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
+import Logout from "./components/Logout";
 
 class App extends Component {
   state = {
-    isLogin: false,
+    isLogin: true,
+    isModalopen: false,
   };
 
   onLogin = () => {
@@ -19,13 +21,30 @@ class App extends Component {
     console.log("로그인버튼state:", this.state);
   };
 
+  //로그아웃 핸들링 - 서버
+  handleLogoutClose = async () => {
+    this.setState((prevState) => ({
+      isLogin: !prevState.isLogin,
+      isModalopen: !prevState.isModalopen,
+    }));
+  };
+
+  setisModalClose = () => {
+    this.setState((prevState) => ({
+      isModalopen: !prevState.isModalopen,
+    }));
+    // 추후 링크 메인으로 이동시켜야함
+  };
+
   render() {
-    const { isLogin } = this.state;
+    const { isLogin, isModalopen } = this.state;
+    //핸들링 함수
+    const { handleLogoutClose, setisModalClose } = this;
 
     return (
       <div className="wrap">
         <header>
-          <Nav isLogin={isLogin} />
+          <Nav isLogin={isLogin} handleLogoutClose={handleLogoutClose} />
         </header>
         <div className="contents">
           <Switch>
@@ -34,6 +53,12 @@ class App extends Component {
             </Route>
             <Route path="/mypage">{/* <Mypage /> */}</Route>
             <Route path="signup" />
+            <Route path="/logout">
+              <Logout
+                isModalopen={isModalopen}
+                setisModalClose={setisModalClose}
+              />
+            </Route>
             <Route path="/findtheater" />
             <Route path="/board" />
             <Route path="/movielist" />
