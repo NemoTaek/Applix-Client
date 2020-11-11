@@ -7,14 +7,14 @@ import Signup from "./pages/Signup";
 import MyPage from "./pages/MyPage";
 import CheckPassword from "./pages/CheckPassword";
 import ModifyInfo from "./pages/ModifyInfo";
-// import Login from "./pages/Login";
+import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
 
 class App extends Component {
   state = {
-    isLogin: false,
+    isLogin: true,
     isModalopen: false,
   };
 
@@ -53,7 +53,7 @@ class App extends Component {
         <div className="contents">
           <Switch>
             <Route path="/login">
-              {/* <Login isLogin={isLogin} onLogin={this.onLogin} /> */}
+              <Login isLogin={isLogin} />
             </Route>
             <Route path="/logout">
               <Logout
