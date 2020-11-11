@@ -3,7 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 // pages
 import Main from "./pages/Main";
-import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+// import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
 
@@ -30,10 +31,12 @@ class App extends Component {
         <div className="contents">
           <Switch>
             <Route path="/login">
-              <Login isLogin={isLogin} onLogin={this.onLogin} />
+              {/* <Login isLogin={isLogin} onLogin={this.onLogin} /> */}
             </Route>
             <Route path="/mypage">{/* <Mypage /> */}</Route>
-            <Route path="signup" />
+            <Route path="/signup" component={Signup} />
+            {/* <Signup />
+            </Route> */}
             <Route path="/findtheater" />
             <Route path="/board" />
             <Route path="/movielist" />
