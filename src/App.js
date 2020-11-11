@@ -4,14 +4,18 @@ import "./App.css";
 // pages
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
+import MyPage from "./pages/MyPage";
 // import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
 
 class App extends Component {
-  state = {
-    isLogin: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogin: true,
+    };
+  }
 
   onLogin = () => {
     this.setState((prevState) => ({
@@ -33,10 +37,8 @@ class App extends Component {
             <Route path="/login">
               {/* <Login isLogin={isLogin} onLogin={this.onLogin} /> */}
             </Route>
-            <Route path="/mypage">{/* <Mypage /> */}</Route>
+            <Route path="/mypage" component={MyPage} />
             <Route path="/signup" component={Signup} />
-            {/* <Signup />
-            </Route> */}
             <Route path="/findtheater" />
             <Route path="/board" />
             <Route path="/movielist" />

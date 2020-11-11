@@ -10,7 +10,7 @@ function Signup(props) {
 
       <div className="signup password">
         <span className="span">password: </span>
-        <input className="input input_password" type="password" minlength="8" placeholder="비밀번호는 8자리 이상"></input>
+        <input className="input input_password" type="password" placeholder="비밀번호는 8자리 이상"></input>
       </div>
 
       <div className="signup nickname">
