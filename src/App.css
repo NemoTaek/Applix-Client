@@ -91,6 +91,15 @@ header {
   cursor: pointer;
 }
 
+/* -------------------------check password css-------------------------------*/
+.check_btn {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+}
+
+/* -------------------------modify info css-------------------------------*/
+
 footer {
   width: 100%;
   height: 150px;
