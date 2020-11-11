@@ -3,16 +3,29 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 // pages
 import Main from "./pages/Main";
-import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import MyPage from "./pages/MyPage";
+import CheckPassword from "./pages/CheckPassword";
+import ModifyInfo from "./pages/ModifyInfo";
+// import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
 
 class App extends Component {
+<<<<<<< HEAD
   state = {
     isLogin: true,
     isModalopen: false,
   };
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLogin: false,
+    };
+  }
+>>>>>>> 36bf9431eab2fd64aed65a6069596b8520df9215
 
   onLogin = () => {
     this.setState((prevState) => ({
@@ -49,8 +62,9 @@ class App extends Component {
         <div className="contents">
           <Switch>
             <Route path="/login">
-              <Login isLogin={isLogin} onLogin={this.onLogin} />
+              {/* <Login isLogin={isLogin} onLogin={this.onLogin} /> */}
             </Route>
+<<<<<<< HEAD
             <Route path="/mypage">{/* <Mypage /> */}</Route>
             <Route path="signup" />
             <Route path="/logout">
@@ -59,6 +73,12 @@ class App extends Component {
                 setisModalClose={setisModalClose}
               />
             </Route>
+=======
+            <Route path="/mypage" component={MyPage} />
+            <Route path="/checkpassword" component={CheckPassword} />
+            <Route path="/modifyinfo" component={ModifyInfo} />
+            <Route path="/signup" component={Signup} />
+>>>>>>> 36bf9431eab2fd64aed65a6069596b8520df9215
             <Route path="/findtheater" />
             <Route path="/board" />
             <Route path="/movielist" />

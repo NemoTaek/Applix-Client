@@ -24,6 +24,82 @@ header {
   /* border: 1px solid red; */
 }
 
+/* -------------------------signup css-------------------------------*/
+.signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.signup > span {
+  display: inline-block;
+  width: 150px;
+  height: 30px;
+  font-size: 20px;
+  text-align: left;
+}
+
+.signup > input {
+  display: inline-block;
+  width: 300px;
+  height: 50px;
+  font-size: 15px;
+}
+
+.signup_btn {
+  width: 450px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.error {
+  display: none;
+  width: 450px;
+  height: 30px;
+  font-size: 20px;
+  color: red;
+  margin-bottom: 20px;
+}
+
+/* -------------------------mypage css-------------------------------*/
+.mypage_wrap{
+  width: 100%;
+  height: 100vh;
+}
+
+.mypage_wrap .info{
+  width: 100%;
+  padding: 10px;
+  border-top: red 5px solid;
+  border-bottom: red 5px solid;
+}
+
+.mypage_wrap .mypage_list{
+  width: 100%;
+  padding: 10px;
+  border-top: blue 5px solid;
+  border-bottom: blue 5px solid;
+}
+
+.mypage_wrap .mypage_list .list{
+  display: inline-block;
+  width: 33.3%;
+  height: 100%;
+  padding: 10px;
+  border: green 5px solid;
+  cursor: pointer;
+}
+
+/* -------------------------check password css-------------------------------*/
+.check_btn {
+  width: 100px;
+  height: 50px;
+  font-size: 20px;
+}
+
+/* -------------------------modify info css-------------------------------*/
+
 footer {
   width: 100%;
   height: 150px;
