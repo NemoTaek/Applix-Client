@@ -5,6 +5,8 @@ import "./Nav.css";
 class Nav extends Component {
   render() {
     const { isLogin } = this.props;
+    //props 핸들링 함수
+    const { handleLogoutClose } = this.props;
 
     return (
       <div>
@@ -32,7 +34,7 @@ class Nav extends Component {
             </li>
             {isLogin ? (
               <>
-                <li>
+                <li onClick={handleLogoutClose}>
                   <NavLink to="/logout" activeClassName="selected">
                     로그아웃
                   </NavLink>
