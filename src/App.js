@@ -5,6 +5,8 @@ import "./App.css";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import MyPage from "./pages/MyPage";
+import CheckPassword from "./pages/CheckPassword";
+import ModifyInfo from "./pages/ModifyInfo";
 // import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
@@ -13,7 +15,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: true,
+      isLogin: false,
     };
   }
 
@@ -38,6 +40,8 @@ class App extends Component {
               {/* <Login isLogin={isLogin} onLogin={this.onLogin} /> */}
             </Route>
             <Route path="/mypage" component={MyPage} />
+            <Route path="/checkpassword" component={CheckPassword} />
+            <Route path="/modifyinfo" component={ModifyInfo} />
             <Route path="/signup" component={Signup} />
             <Route path="/findtheater" />
             <Route path="/board" />
