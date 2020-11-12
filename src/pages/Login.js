@@ -4,6 +4,8 @@ import axios from "axios";
 import "./error.css";
 import Logininput from "../components/Logininput";
 
+// axios.defaults.withCredentials = false;
+
 class Login extends Component {
   state = {
     emailValue: "",
@@ -34,8 +36,10 @@ class Login extends Component {
     // axios 를 통해 서버 연결을 받아와서 출력 표시
     if (result) {
       await axios
-        .post("서버 주소/login", userData)
+        // .post("서버 주소/login", userData)
+        .get("http://15.164.169.53:3001/")
         .then((res) => {
+          console.log(res);
           // status : 200
           // onLogin(res.data.id);
         })
