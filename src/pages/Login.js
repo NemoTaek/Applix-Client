@@ -28,7 +28,7 @@ class Login extends Component {
   handleLogin = async (e) => {
     e.preventDefault();
     const { emailValue, passwordValue } = this.state;
-    // let { onLogin } = this.props;
+    let { onLogin } = this.props;
     // 유효성 검사
     const props = ["emailValue", "passwordValue"];
     const result = props.every((ele) => this.state[ele] !== "");
@@ -36,12 +36,9 @@ class Login extends Component {
     // axios 를 통해 서버 연결을 받아와서 출력 표시
     if (result) {
       await axios
-        // .post("서버 주소/login", userData)
-        .get("http://15.164.169.53:3001/")
+        .post("http://3.35.208.49:5000/signin", userData)
         .then((res) => {
-          console.log(res);
-          // status : 200
-          // onLogin(res.data.id);
+          onLogin(res.data.id);
         })
         .catch((error) => {
           // console.log("에러", error.response.status);
