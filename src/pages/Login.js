@@ -37,7 +37,7 @@ class Login extends Component {
     if (result) {
       await axios
         // .post("서버 주소/login", userData)
-        .get("http://15.164.169.53:3001/")
+        .post("http://3.35.208.49:5000/signin", userData)
         .then((res) => {
           console.log(res);
           // status : 200
@@ -77,23 +77,23 @@ class Login extends Component {
           {isLogin ? (
             <Redirect to="/mypage" />
           ) : (
-            <>
-              <Logininput
-                emailValue={emailValue}
-                passwordValue={passwordValue}
-                onEmailChange={handleEmailChange.bind(this)}
-                onPasswordChange={handlePasswordChange.bind(this)}
-              />
-              {errorValue !== "" ? (
-                <p className="errorPtag"> {errorValue} </p>
-              ) : (
-                <p></p>
-              )}
-              <button className="generalLoginBtn" onClick={handleLogin}>
-                Login
+              <>
+                <Logininput
+                  emailValue={emailValue}
+                  passwordValue={passwordValue}
+                  onEmailChange={handleEmailChange.bind(this)}
+                  onPasswordChange={handlePasswordChange.bind(this)}
+                />
+                {errorValue !== "" ? (
+                  <p className="errorPtag"> {errorValue} </p>
+                ) : (
+                    <p></p>
+                  )}
+                <button className="generalLoginBtn" onClick={handleLogin}>
+                  Login
               </button>
-            </>
-          )}
+              </>
+            )}
           <hr />
           <div className="socialLogin">
             <h2>간편로그인</h2>

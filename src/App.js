@@ -61,8 +61,8 @@ class App extends Component {
                 setisModalClose={setisModalClose}
               />
             </Route>
-            <Route path="/mypage" component={MyPage} />
-            <Route path="/checkpassword" component={CheckPassword} />
+            <Route exact path="/mypage" component={MyPage} />
+            <Route path="/mypage/checkpassword" component={CheckPassword} />
             <Route path="/modifyinfo" component={ModifyInfo} />
             <Route path="/signup" component={Signup} />
             <Route path="/findtheater" />
