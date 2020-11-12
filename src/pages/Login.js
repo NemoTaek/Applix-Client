@@ -8,9 +8,10 @@ import Logininput from "../components/Logininput";
 
 class Login extends Component {
   state = {
-    emailValue: "",
+    emailValue: localStorage.getItem("ApplixID") || "",
     passwordValue: "",
     errorValue: "",
+    rememberchecked: false,
   };
 
   handleEmailChange = (e) => {
@@ -23,6 +24,18 @@ class Login extends Component {
     this.setState({
       passwordValue: e.target.value,
     });
+  };
+
+  onCheckboxChangeHandler = (e) => {
+    this.setState((prevState) => ({
+      rememberchecked: !prevState.rememberchecked,
+    }));
+
+    if (e.target.checked) {
+      if (this.state.emailValue !== "") {
+        localStorage.setItem("ApplixID", this.state.emailValue);
+      }
+    }
   };
 
   handleLogin = async (e) => {
@@ -64,9 +77,19 @@ class Login extends Component {
   };
 
   render() {
-    const { emailValue, passwordValue, errorValue } = this.state;
+    const {
+      emailValue,
+      passwordValue,
+      errorValue,
+      rememberchecked,
+    } = this.state;
     let { isLogin } = this.props;
-    const { handleEmailChange, handlePasswordChange, handleLogin } = this;
+    const {
+      handleEmailChange,
+      handlePasswordChange,
+      handleLogin,
+      onCheckboxChangeHandler,
+    } = this;
 
     return (
       <>
@@ -81,6 +104,14 @@ class Login extends Component {
                 onEmailChange={handleEmailChange.bind(this)}
                 onPasswordChange={handlePasswordChange.bind(this)}
               />
+              <div className="rememberChkbox">
+                <input
+                  type="checkbox"
+                  checked={rememberchecked}
+                  onChange={onCheckboxChangeHandler}
+                />
+                <p>아이디 기억하기</p>
+              </div>
               {errorValue !== "" ? (
                 <p className="errorPtag"> {errorValue} </p>
               ) : (
