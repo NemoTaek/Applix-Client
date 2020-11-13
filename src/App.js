@@ -34,17 +34,25 @@ class App extends Component {
 
   //로그아웃 핸들링 - 서버
   handleLogoutClose = async () => {
-    this.setState((prevState) => ({
-      isLogin: !prevState.isLogin,
-      isModalopen: !prevState.isModalopen,
-    }));
+    try {
+      // 세션 파괴 요청
+      await axios.post("http://3.35.208.49:5000/signout");
+      // state 재세팅
+      this.setState((prevState) => ({
+        isLogin: !prevState.isLogin,
+        isModalopen: !prevState.isModalopen,
+        userdata: null,
+      }));
+    } catch (error) {
+      throw error;
+    }
   };
 
   setisModalClose = () => {
     this.setState((prevState) => ({
       isModalopen: !prevState.isModalopen,
     }));
-    // 추후 링크 메인으로 이동시켜야함
+    document.location.href = "/";
   };
 
   render() {
