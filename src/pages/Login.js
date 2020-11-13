@@ -49,6 +49,7 @@ class Login extends Component {
     // axios 를 통해 서버 연결을 받아와서 출력 표시
     if (result) {
       await axios
+        // .post("서버 주소/login", userData)
         .post("http://3.35.208.49:5000/signin", userData)
         .then((res) => {
           onLogin(res.data.id);
@@ -97,31 +98,31 @@ class Login extends Component {
           {isLogin ? (
             <Redirect to="/" />
           ) : (
-            <>
-              <Logininput
-                emailValue={emailValue}
-                passwordValue={passwordValue}
-                onEmailChange={handleEmailChange.bind(this)}
-                onPasswordChange={handlePasswordChange.bind(this)}
-              />
-              <div className="rememberChkbox">
-                <input
-                  type="checkbox"
-                  checked={rememberchecked}
-                  onChange={onCheckboxChangeHandler}
+              <>
+                <Logininput
+                  emailValue={emailValue}
+                  passwordValue={passwordValue}
+                  onEmailChange={handleEmailChange.bind(this)}
+                  onPasswordChange={handlePasswordChange.bind(this)}
                 />
-                <p>아이디 기억하기</p>
-              </div>
-              {errorValue !== "" ? (
-                <p className="errorPtag"> {errorValue} </p>
-              ) : (
-                <p></p>
-              )}
-              <button className="generalLoginBtn" onClick={handleLogin}>
-                Login
+                <div className="rememberChkbox">
+                  <input
+                    type="checkbox"
+                    checked={rememberchecked}
+                    onChange={onCheckboxChangeHandler}
+                  />
+                  <p>아이디 기억하기</p>
+                </div>
+                {errorValue !== "" ? (
+                  <p className="errorPtag"> {errorValue} </p>
+                ) : (
+                    <p></p>
+                  )}
+                <button className="generalLoginBtn" onClick={handleLogin}>
+                  Login
               </button>
-            </>
-          )}
+              </>
+            )}
           <hr />
           <div className="socialLogin">
             <h2>간편로그인</h2>

@@ -1,11 +1,12 @@
 import React from "react";
 
 function ModifyInfo(props) {
+  // console.log(props.userdata);
   return (
     <div className="signup_wrap">
       <div className="signup email">
         <span className="span">email: </span>
-        <input className="input input_email" type="email" defaultValue={1/*DB에서 email 값 */} readOnly></input>
+        <input className="input input_email" type="email" defaultValue={1} readOnly></input>
       </div>
 
       <div className="signup password">
@@ -15,7 +16,7 @@ function ModifyInfo(props) {
 
       <div className="signup nickname">
         <span className="span">nickname: </span>
-        <input className="input input_nickname" type="text" defaultValue={1/*DB에서 email 값 */} placeholder="ex) 김코딩"></input>
+        <input className="input input_nickname" type="text" defaultValue={1} placeholder="ex) 김코딩"></input>
       </div>
 
       <p className="error"></p>

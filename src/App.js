@@ -52,7 +52,7 @@ class App extends Component {
   };
 
   render() {
-    const { isLogin, isModalopen } = this.state;
+    const { isLogin, isModalopen, userdata } = this.state;
     //핸들링 함수
     const { handleLogoutClose, setisModalClose, onLogin } = this;
 
@@ -66,15 +66,26 @@ class App extends Component {
             <Route path="/login">
               <Login isLogin={isLogin} onLogin={onLogin} />
             </Route>
+
             <Route path="/logout">
               <Logout
                 isModalopen={isModalopen}
                 setisModalClose={setisModalClose}
               />
             </Route>
-            <Route path="/mypage" component={MyPage} />
-            <Route path="/checkpassword" component={CheckPassword} />
-            <Route path="/modifyinfo" component={ModifyInfo} />
+
+            <Route exact path="/mypage" component={MyPage} >
+              <MyPage userdata={userdata} />
+            </Route>
+
+            <Route path="/mypage/checkpassword" component={CheckPassword} >
+              <CheckPassword userdata={userdata} />
+            </Route>
+
+            <Route path="/modifyinfo" component={ModifyInfo} >
+              <ModifyInfo userdata={userdata} />
+            </Route>
+
             <Route path="/signup" component={Signup} />
             <Route path="/findtheater" />
             <Route path="/board" />
