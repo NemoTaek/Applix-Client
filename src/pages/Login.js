@@ -11,7 +11,7 @@ class Login extends Component {
     emailValue: localStorage.getItem("ApplixID") || "",
     passwordValue: "",
     errorValue: "",
-    rememberchecked: false,
+    rememberchecked: localStorage.getItem("rmbChkbox") || false,
   };
 
   handleEmailChange = (e) => {
@@ -32,9 +32,11 @@ class Login extends Component {
     }));
 
     if (e.target.checked) {
-      if (this.state.emailValue !== "") {
-        localStorage.setItem("ApplixID", this.state.emailValue);
-      }
+      localStorage.setItem("ApplixID", this.state.emailValue);
+      localStorage.setItem("rmbChkbox", this.state.rememberchecked);
+    } else {
+      localStorage.removeItem("ApplixID");
+      localStorage.removeItem("rmbChkbox");
     }
   };
 
