@@ -5,9 +5,7 @@ function MyPage(props) {
   return (
     <div className="mypage_wrap">
       <div className="info">
-        <p className="welcome">
-          {/* {getMypage.nickname} 님 환영합니다. */}nickname 님 환영합니다.
-          </p>
+        <p className="welcome">{props.userdata.nickName} 님 환영합니다.</p>
       </div>
 
       <div className="mypage_list">

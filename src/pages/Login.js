@@ -28,7 +28,7 @@ class Login extends Component {
   handleLogin = async (e) => {
     e.preventDefault();
     const { emailValue, passwordValue } = this.state;
-    // let { onLogin } = this.props;
+    let { onLogin } = this.props;
     // 유효성 검사
     const props = ["emailValue", "passwordValue"];
     const result = props.every((ele) => this.state[ele] !== "");
@@ -39,9 +39,7 @@ class Login extends Component {
         // .post("서버 주소/login", userData)
         .post("http://3.35.208.49:5000/signin", userData)
         .then((res) => {
-          console.log(res);
-          // status : 200
-          // onLogin(res.data.id);
+          onLogin(res.data.id);
         })
         .catch((error) => {
           // console.log("에러", error.response.status);
@@ -75,7 +73,7 @@ class Login extends Component {
       <>
         <div className="generalLogin">
           {isLogin ? (
-            <Redirect to="/mypage" />
+            <Redirect to="/" />
           ) : (
               <>
                 <Logininput

@@ -11,18 +11,25 @@ import Login from "./pages/Login";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
+import axios from "axios";
 
 class App extends Component {
   state = {
-    isLogin: true,
+    isLogin: false,
     isModalopen: false,
+    userdata: null,
   };
 
-  onLogin = () => {
+  onLogin = async (userid) => {
+    let result = await axios
+      .get("http://3.35.208.49:5000/")
+      .then((res) => res.data)
+      .then((userdata) => userdata);
+
     this.setState((prevState) => ({
       isLogin: !prevState.isLogin,
+      userdata: result,
     }));
-    console.log("로그인버튼state:", this.state);
   };
 
   //로그아웃 핸들링 - 서버
@@ -41,9 +48,9 @@ class App extends Component {
   };
 
   render() {
-    const { isLogin, isModalopen } = this.state;
+    const { isLogin, isModalopen, userdata } = this.state;
     //핸들링 함수
-    const { handleLogoutClose, setisModalClose } = this;
+    const { handleLogoutClose, setisModalClose, onLogin } = this;
 
     return (
       <div className="wrap">
@@ -53,17 +60,28 @@ class App extends Component {
         <div className="contents">
           <Switch>
             <Route path="/login">
-              <Login isLogin={isLogin} />
+              <Login isLogin={isLogin} onLogin={onLogin} />
             </Route>
+
             <Route path="/logout">
               <Logout
                 isModalopen={isModalopen}
                 setisModalClose={setisModalClose}
               />
             </Route>
-            <Route exact path="/mypage" component={MyPage} />
-            <Route path="/mypage/checkpassword" component={CheckPassword} />
-            <Route path="/modifyinfo" component={ModifyInfo} />
+
+            <Route exact path="/mypage" component={MyPage} >
+              <MyPage userdata={userdata} />
+            </Route>
+
+            <Route path="/mypage/checkpassword" component={CheckPassword} >
+              <CheckPassword userdata={userdata} />
+            </Route>
+
+            <Route path="/modifyinfo" component={ModifyInfo} >
+              <ModifyInfo userdata={userdata} />
+            </Route>
+
             <Route path="/signup" component={Signup} />
             <Route path="/findtheater" />
             <Route path="/board" />
