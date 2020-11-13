@@ -1,11 +1,9 @@
 .generalLogin {
   width: 50%;
   height: 500px;
-  /* border: 1px solid gray; */
 }
 
 .generalLogin .input {
-  margin-top: 50px;
   width: 100%;
   height: 150px;
   font-weight: bold;
@@ -29,6 +27,19 @@
   outline: none;
   border: none;
   border-bottom: 1px solid #cccccc;
+}
+
+.rememberChkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  padding: 20px 20px 0px 20px;
+  /* background-color: tomato; */
+}
+
+.rememberChkbox input {
+  margin-right: 10px;
 }
 
 .generalLogin .generalLoginBtn {
