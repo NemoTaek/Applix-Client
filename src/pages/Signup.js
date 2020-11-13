@@ -36,6 +36,8 @@ class Signup extends Component {
     const { email, password, nickname } = this.state;
     const signupData = { email: email, password: password, nickName: nickname };
 
+    console.log(signupData.nickName);
+
     if (!signupData.email.includes('@')) {
       error.style.display = "block";
       this.setState({
@@ -48,7 +50,7 @@ class Signup extends Component {
         errorMessage: "비밀번호는 8자리 이상이어야 합니다."
       })
     }
-    else if (!signupData.nickname) {
+    else if (!signupData.nickName) {
       error.style.display = "block";
       this.setState({
         errorMessage: "닉네임을 입력해주세요."
@@ -56,24 +58,24 @@ class Signup extends Component {
     }
     else {
       error.style.display = "none";
-    }
 
-    // axios.post("http://3.35.208.49:5000/signup", signupData)
-    //   .then((res) => {
-    //     // 회원가입에 성공하면 로그인 페이지로 이동
-    //     if (res.status === 200) {
-    //       document.location.href = "/login";
-    //     }
-    //     else if (res.status === 409) {
-    //       error.style.display = "block";
-    //       this.setState({
-    //         errorMessage: "이메일 또는 닉네임이 이미 존재합니다."
-    //       })
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   })
+      axios.post("http://3.35.208.49:5000/signup", signupData)
+        .then((res) => {
+          // 회원가입에 성공하면 로그인 페이지로 이동
+          if (res.status === 201) {
+            document.location.href = "/login";
+          }
+          else if (res.status === 409) {
+            error.style.display = "block";
+            this.setState({
+              errorMessage: "이메일 또는 닉네임이 이미 존재합니다."
+            })
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
   }
 
   render() {
