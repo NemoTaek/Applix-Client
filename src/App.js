@@ -25,7 +25,7 @@ class App extends Component {
       .get("http://3.35.208.49:5000/")
       .then((res) => res.data)
       .then((userdata) => userdata);
-
+    console.log(result);
     this.setState((prevState) => ({
       isLogin: !prevState.isLogin,
       userdata: result,
