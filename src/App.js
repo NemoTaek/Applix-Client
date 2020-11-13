@@ -17,19 +17,15 @@ class App extends Component {
   state = {
     isLogin: false,
     isModalopen: false,
-    userdata: null,
+    userid: null,
   };
 
   onLogin = async (userid) => {
-    let result = await axios
-      .get("http://3.35.208.49:5000/")
-      .then((res) => res.data)
-      .then((userdata) => userdata);
-    console.log(result);
     this.setState((prevState) => ({
       isLogin: !prevState.isLogin,
-      userdata: result,
+      userid: userid,
     }));
+    // console.log("현재state유저ID: ", userid)
   };
 
   //로그아웃 핸들링 - 서버
