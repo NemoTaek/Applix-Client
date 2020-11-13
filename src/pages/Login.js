@@ -72,7 +72,7 @@ class Login extends Component {
       <>
         <div className="generalLogin">
           {isLogin ? (
-            <Redirect to="/mypage" />
+            <Redirect to="/" />
           ) : (
             <>
               <Logininput
