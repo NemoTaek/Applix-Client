@@ -87,7 +87,7 @@ class Login extends Component {
       errorValue,
       rememberchecked,
     } = this.state;
-    let { isLogin } = this.props;
+    let { isLogin, userid } = this.props;
     const {
       handleEmailChange,
       handlePasswordChange,
@@ -99,7 +99,7 @@ class Login extends Component {
       <>
         <div className="generalLogin">
           {isLogin ? (
-            <Redirect to="/" />
+            <Redirect to={`/userid=${userid}`} />
           ) : (
             <>
               <Logininput

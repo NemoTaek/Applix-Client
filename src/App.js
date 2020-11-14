@@ -25,7 +25,7 @@ class App extends Component {
       isLogin: !prevState.isLogin,
       userid: userid,
     }));
-    // console.log("현재state유저ID: ", userid)
+    console.log("현재state유저ID: ", userid);
   };
 
   //로그아웃 핸들링 - 서버
@@ -37,7 +37,7 @@ class App extends Component {
       this.setState((prevState) => ({
         isLogin: !prevState.isLogin,
         isModalopen: !prevState.isModalopen,
-        userdata: null,
+        userid: null,
       }));
     } catch (error) {
       throw error;
@@ -52,19 +52,23 @@ class App extends Component {
   };
 
   render() {
-    const { isLogin, isModalopen, userdata } = this.state;
+    const { isLogin, isModalopen, userid } = this.state;
     //핸들링 함수
     const { handleLogoutClose, setisModalClose, onLogin } = this;
 
     return (
       <div className="wrap">
         <header>
-          <Nav isLogin={isLogin} handleLogoutClose={handleLogoutClose} />
+          <Nav
+            isLogin={isLogin}
+            handleLogoutClose={handleLogoutClose}
+            userid={userid}
+          />
         </header>
         <div className="contents">
           <Switch>
             <Route path="/login">
-              <Login isLogin={isLogin} onLogin={onLogin} />
+              <Login isLogin={isLogin} onLogin={onLogin} userid={userid} />
             </Route>
 
             <Route path="/logout">
@@ -74,16 +78,16 @@ class App extends Component {
               />
             </Route>
 
-            <Route exact path="/mypage" component={MyPage} >
-              <MyPage userdata={userdata} />
+            <Route exact path="/mypage" component={MyPage}>
+              <MyPage userid={userid} />
             </Route>
 
-            <Route path="/mypage/checkpassword" component={CheckPassword} >
-              <CheckPassword userdata={userdata} />
+            <Route path="/mypage/checkpassword" component={CheckPassword}>
+              <CheckPassword userid={userid} />
             </Route>
 
-            <Route path="/modifyinfo" component={ModifyInfo} >
-              <ModifyInfo userdata={userdata} />
+            <Route path="/modifyinfo" component={ModifyInfo}>
+              <ModifyInfo userid={userid} />
             </Route>
 
             <Route path="/signup" component={Signup} />
