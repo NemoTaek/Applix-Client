@@ -36,8 +36,6 @@ class Signup extends Component {
     const { email, password, nickname } = this.state;
     const signupData = { email: email, password: password, nickName: nickname };
 
-    console.log(signupData.nickName);
-
     if (!signupData.email.includes('@')) {
       error.style.display = "block";
       this.setState({
@@ -58,7 +56,7 @@ class Signup extends Component {
     }
     else {
       error.style.display = "none";
-
+      console.log(signupData);
       axios.post("http://3.35.208.49:5000/signup", signupData)
         .then((res) => {
           // 회원가입에 성공하면 로그인 페이지로 이동
