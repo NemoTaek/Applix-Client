@@ -1,20 +1,42 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
+// import homeicon from "../img/icon_home.png";
 
 class Nav extends Component {
+  state = {
+    isOpen: false,
+  };
+
+  setIsMenuOpen(e) {
+    this.setState((prev) => ({
+      isOpen: !prev.isOpen,
+    }));
+
+    e.target.classList.toggle("active");
+  }
+
   render() {
     const { isLogin } = this.props;
     //props 핸들링 함수
     const { handleLogoutClose } = this.props;
-
+    const { setIsMenuOpen } = this;
+    // document.addEventListener("click", setIsMenuOpen, false);
     return (
       <div>
         <nav>
-          <ul>
+          <div className="ham-menu" onClick={setIsMenuOpen.bind(this)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul
+            className={this.state.isOpen ? "open" : "close"}
+            onClick={setIsMenuOpen.bind(this)}
+          >
             <li>
               <NavLink exact to="/" activeClassName="selected">
-                배너 이미지(HOME)
+                {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
               </NavLink>
             </li>
             <li>
