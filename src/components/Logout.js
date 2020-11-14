@@ -2,7 +2,7 @@ import React from "react";
 import "./Logout.css";
 
 function Logout({ isModalopen, setisModalClose }) {
-  // document.addEventListener("click", handleLogoutClose, true);
+  document.addEventListener("click", setisModalClose, true);
   return (
     <div className={isModalopen ? "logoutwrap show" : "logoutwrap"}>
       <div className="logoutmodal">

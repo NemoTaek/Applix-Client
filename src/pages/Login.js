@@ -11,7 +11,7 @@ class Login extends Component {
     emailValue: localStorage.getItem("ApplixID") || "",
     passwordValue: "",
     errorValue: "",
-    rememberchecked: localStorage.getItem("rmbChkbox") || false,
+    rememberchecked: JSON.parse(localStorage.getItem("rmbChkbox")) || false,
   };
 
   handleEmailChange = (e) => {
@@ -33,7 +33,7 @@ class Login extends Component {
 
     if (e.target.checked) {
       localStorage.setItem("ApplixID", this.state.emailValue);
-      localStorage.setItem("rmbChkbox", this.state.rememberchecked);
+      localStorage.setItem("rmbChkbox", !this.state.rememberchecked);
     } else {
       localStorage.removeItem("ApplixID");
       localStorage.removeItem("rmbChkbox");
@@ -54,6 +54,7 @@ class Login extends Component {
         // .post("서버 주소/login", userData)
         .post("http://3.35.208.49:5000/signin", userData)
         .then((res) => {
+          console.log(res);
           onLogin(res.data.id);
         })
         .catch((error) => {
@@ -100,31 +101,31 @@ class Login extends Component {
           {isLogin ? (
             <Redirect to="/" />
           ) : (
-              <>
-                <Logininput
-                  emailValue={emailValue}
-                  passwordValue={passwordValue}
-                  onEmailChange={handleEmailChange.bind(this)}
-                  onPasswordChange={handlePasswordChange.bind(this)}
+            <>
+              <Logininput
+                emailValue={emailValue}
+                passwordValue={passwordValue}
+                onEmailChange={handleEmailChange.bind(this)}
+                onPasswordChange={handlePasswordChange.bind(this)}
+              />
+              <div className="rememberChkbox">
+                <input
+                  type="checkbox"
+                  checked={rememberchecked}
+                  onChange={onCheckboxChangeHandler}
                 />
-                <div className="rememberChkbox">
-                  <input
-                    type="checkbox"
-                    checked={rememberchecked}
-                    onChange={onCheckboxChangeHandler}
-                  />
-                  <p>아이디 기억하기</p>
-                </div>
-                {errorValue !== "" ? (
-                  <p className="errorPtag"> {errorValue} </p>
-                ) : (
-                    <p></p>
-                  )}
-                <button className="generalLoginBtn" onClick={handleLogin}>
-                  Login
+                <p>아이디 기억하기</p>
+              </div>
+              {errorValue !== "" ? (
+                <p className="errorPtag"> {errorValue} </p>
+              ) : (
+                <p></p>
+              )}
+              <button className="generalLoginBtn" onClick={handleLogin}>
+                Login
               </button>
-              </>
-            )}
+            </>
+          )}
           <hr />
           <div className="socialLogin">
             <h2>간편로그인</h2>
