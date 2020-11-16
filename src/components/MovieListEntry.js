@@ -20,8 +20,9 @@ function MovieListEntry(props) {
           <p>제작년도 : {pubDate}</p>
           <p>유저평점 : {userRating}</p>
           <button
-            onClick={() => {
-              makeWishList(props.movies);
+            className="btn_movieWish"
+            onClick={(e) => {
+              makeWishList(e, props.movies);
             }}
           >
             ♥ 찜하기

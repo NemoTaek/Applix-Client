@@ -92,7 +92,7 @@
   padding-left: 10px;
 }
 
-.movieinfo .detail button {
+.btn_movieWish {
   width: 80%;
   height: 40px;
   background-color: black;
@@ -102,11 +102,11 @@
   cursor: pointer;
 }
 
-.movieinfo .detail button:hover {
+.btn_movieWish:hover {
   background-color: lightgray;
 }
 
-.movieinfo .detail button:active {
+.btn_movieWish.active {
   color: black;
   background-color: tomato;
 }

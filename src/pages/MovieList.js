@@ -44,6 +44,8 @@ class MovieList extends Component {
     this.setState({
       searchGenre: e.target.value,
     });
+
+    console.log("현재 옵션key값", e.target.value, "업데이트상태", this.state);
   }
 
   onSearch = async (keyword) => {
@@ -54,7 +56,7 @@ class MovieList extends Component {
     this.setState({ movies: movieData });
   };
 
-  makeWishList = async (data) => {
+  makeWishList = async (e, data) => {
     let { isLogin, userid } = this.props;
 
     const sendWishBody = {
@@ -65,12 +67,11 @@ class MovieList extends Component {
       image: data.image,
       link: data.link,
     };
-
     // 로그인한 유저이면 전송이 가능하고, 로그인 안한 유저는 불가능하다.
     if (isLogin) {
-      // 서버 POST - BODY : { sendWishBody }
       await axios.post("http://3.35.208.49:5000/search", sendWishBody);
-
+      // res.status  성공적으로 받아왔다면 해당 스테이터스 확인 후 classList.add로 변환하기
+      e.target.classList.toggle("active");
       // res.status 409 : 이미 찜한 목록
     } else {
       console.log("로그인 후 시도해주세요");
@@ -85,8 +86,11 @@ class MovieList extends Component {
       <div className="movieContents">
         <div className="row h30">
           <select value={searchGenre} onChange={updateGenre.bind(this)}>
+            <option disabled hidden value=""></option>
             {moviegerne.map((ele) => (
-              <option value={ele.code}>{ele.value}</option>
+              <option value={ele.code} key={ele.code}>
+                {ele.value}
+              </option>
             ))}
           </select>
           <input
