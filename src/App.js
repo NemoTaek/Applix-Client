@@ -96,6 +96,7 @@ class App extends Component {
 
             <Route path="/modifyinfo" component={ModifyInfo}>
               <ModifyInfo userid={userid} />
+
             </Route>
 
             <Route path="/signup" component={Signup} />

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import CheckPassword from "./CheckPassword";
 
 class MyPage extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class MyPage extends Component {
     // axios.get("http://3.35.208.49:5000/mypage")
     //   .then((res) => {
     //     // mypage 들어오면 닉네임을 받아와야 함
-    //     if (res.status === 200) {
+    //     if (res.status === 201) {
     //       this.setState({
     //         nickname: res.data
     //       })
@@ -37,7 +38,7 @@ class MyPage extends Component {
           </div>
           <div className="list" >내가 찜한 영화 목록</div>
           <div className="list" >
-            <Link to="/mypage/checkpassword">회원정보 변경</Link>
+            <Link to="/mypage/checkpassword" >회원정보 변경</Link>
           </div>
         </div>
       </div>
