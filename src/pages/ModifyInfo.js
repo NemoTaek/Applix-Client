@@ -5,7 +5,7 @@ class ModifyInfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: props.email,
+      email: localStorage.getItem("ApplixID"),
       password: props.password,
       nickname: props.nickname,
       errorMessage: ""
@@ -42,10 +42,10 @@ class ModifyInfo extends Component {
     else {
       error.style.display = "none";
 
-      axios.put("http://3.35.208.49:5000/mypage/modification", modifyData)
+      axios.put("http://3.35.208.49:5000/mypage/userinfo", modifyData)
         .then((res) => {
           // 회원가입에 성공하면 로그인 페이지로 이동
-          if (res.status === 201) {
+          if (res.status === 200) {
             document.location.href = "/";
           }
           else if (res.status === 409) {

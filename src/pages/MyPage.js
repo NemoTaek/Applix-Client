@@ -38,7 +38,7 @@ class MyPage extends Component {
           </div>
           <div className="list" >내가 찜한 영화 목록</div>
           <div className="list" >
-            <Link to="/mypage/checkpassword" component={CheckPassword}>회원정보 변경</Link>
+            <Link to="/mypage/checkpassword" >회원정보 변경</Link>
           </div>
         </div>
       </div>

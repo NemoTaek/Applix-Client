@@ -7,7 +7,7 @@ class CheckPassword extends Component {
     this.state = {
       password: "",
       errorMessage: "",
-      email: "aaa@naver.com",
+      email: localStorage.getItem("ApplixID"),
       nickname: ""
     }
   }
