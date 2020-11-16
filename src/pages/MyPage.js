@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import CheckPassword from "./CheckPassword";
+import { Route, Link, Switch } from "react-router-dom";
+import Board from "./Board";
 
 class MyPage extends Component {
   constructor(props) {
@@ -34,7 +34,12 @@ class MyPage extends Component {
         </div>
 
         <div className="mypage_list">
-          <div className="list">내가 쓴 게시글 목록
+          <div className="list">
+            <Link to="/board" >내가 쓴 게시글 목록</Link>
+            {/* <Switch>
+              <Route path="/board" component={Board} nickname={nickname}>
+              </Route>
+            </Switch> */}
           </div>
           <div className="list" >내가 찜한 영화 목록</div>
           <div className="list" >
@@ -45,19 +50,5 @@ class MyPage extends Component {
     );
   }
 }
-
-// function getMypage() {
-//   axios.get('/mypage', {
-//     headers: {
-//       session: req.session.userid
-//     }
-//   })
-//     .then(function (response) {
-//       console.log(response);
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     })
-// }
 
 export default MyPage;
