@@ -8,6 +8,9 @@ import MyPage from "./pages/MyPage";
 import CheckPassword from "./pages/CheckPassword";
 import ModifyInfo from "./pages/ModifyInfo";
 import Login from "./pages/Login";
+import Board from "./pages/Board";
+import NewPost from "./pages/NewPost";
+import ViewPost from "./pages/ViewPost";
 import MovieList from "./pages/MovieList";
 // components
 import Nav from "./components/Nav";
@@ -92,8 +95,21 @@ class App extends Component {
             <Route path="/modifyinfo" component={ModifyInfo} />
 
             <Route path="/signup" component={Signup} />
+
             <Route path="/findtheater" />
-            <Route path="/board" />
+
+            <Route path="/board" component={Board}>
+              <Board />
+            </Route>
+
+            <Route path="/newpost" component={NewPost}>
+              <NewPost />
+            </Route>
+
+            <Route path="/viewpost" component={ViewPost}>
+              <ViewPost />
+            </Route>
+
             <Route path="/movielist">
               <MovieList isLogin={isLogin} userid={userid} />
             </Route>

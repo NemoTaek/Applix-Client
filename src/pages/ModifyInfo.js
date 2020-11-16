@@ -31,7 +31,6 @@ class ModifyInfo extends Component {
     const { email, password, nickname } = this.state;
     const modifyData = { email: email, password: password, nickName: nickname };
 
-
     if (modifyData.password.length < 8) {
       error.style.display = "block";
       error.textContent = "비밀번호는 8자리 이상이어야 합니다.";
