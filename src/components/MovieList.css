@@ -1,0 +1,112 @@
+.movieContents {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  /* background-color: rosybrown; */
+}
+
+.row.h30 {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-top: 30px;
+  flex: 0 1 100px;
+  /* border: 2px solid black; */
+}
+
+.row.h30 select {
+  flex: 0 1 200px;
+  vertical-align: middle;
+  text-align-last: center;
+  height: 40px;
+  margin-right: 10px;
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+}
+
+.row.h30 input {
+  flex: 3 1 auto;
+  height: 40px;
+  border: 2px solid black;
+  border-right: 0;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.row.h30 button {
+  flex: 0 1 100px;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border: 0;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+}
+
+.row.h80 {
+  flex: 3 1 auto;
+  margin-top: 5px;
+  /* background-color: teal; */
+}
+
+/* -------------------------MovieListEntry css-------------------------------*/
+
+.movieEntry {
+  padding: 20px;
+  flex-direction: row;
+  width: 100%;
+  /* background-color: blue; */
+  border: 2px solid black;
+}
+
+.movieEntry div:nth-of-type(1) {
+  flex: 1 1 auto;
+}
+
+.movieEntry div:nth-of-type(2) {
+  flex: 2 1 auto;
+}
+
+.movieEntry img {
+  width: 200px;
+  height: 250px;
+  object-fit: fill;
+}
+
+.movieinfo .detail {
+  margin-top: 20px;
+}
+
+.movieinfo .detail p {
+  text-align: left;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 10px;
+  padding-left: 10px;
+}
+
+.btn_movieWish {
+  width: 80%;
+  height: 40px;
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.btn_movieWish:hover {
+  background-color: lightgray;
+}
+
+.btn_movieWish.active {
+  color: black;
+  background-color: tomato;
+}

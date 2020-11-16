@@ -8,6 +8,7 @@ import MyPage from "./pages/MyPage";
 import CheckPassword from "./pages/CheckPassword";
 import ModifyInfo from "./pages/ModifyInfo";
 import Login from "./pages/Login";
+import MovieList from "./pages/MovieList";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
@@ -30,6 +31,7 @@ class App extends Component {
       isLogin: !prevState.isLogin,
       userid: userid,
     }));
+    console.log("현재 로그인상태", this.state.isLogin);
     // console.log("accessToken : ", accessToken.token);
     // console.log("axiosHeaders : ", axios.defaults.headers);
   };
@@ -85,23 +87,16 @@ class App extends Component {
               />
             </Route>
 
-            <Route exact path="/mypage" component={MyPage}>
-              <MyPage userid={userid} />
-            </Route>
-
-            <Route path="/mypage/checkpassword" component={CheckPassword}>
-              <CheckPassword userid={userid} />
-            </Route>
-
-            <Route path="/modifyinfo" component={ModifyInfo}>
-              <ModifyInfo userid={userid} />
-
-            </Route>
+            <Route exact path="/mypage" component={MyPage} />
+            <Route path="/mypage/checkpassword" component={CheckPassword} />
+            <Route path="/modifyinfo" component={ModifyInfo} />
 
             <Route path="/signup" component={Signup} />
             <Route path="/findtheater" />
             <Route path="/board" />
-            <Route path="/movielist" />
+            <Route path="/movielist">
+              <MovieList isLogin={isLogin} userid={userid} />
+            </Route>
             <Route exact path="/" component={Main} />
           </Switch>
         </div>
