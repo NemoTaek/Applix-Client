@@ -8,6 +8,7 @@ import MyPage from "./pages/MyPage";
 import CheckPassword from "./pages/CheckPassword";
 import ModifyInfo from "./pages/ModifyInfo";
 import Login from "./pages/Login";
+import MovieList from "./pages/MovieList";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
@@ -74,22 +75,22 @@ class App extends Component {
               />
             </Route>
 
-            <Route exact path="/mypage" component={MyPage} >
+            <Route exact path="/mypage" component={MyPage}>
               <MyPage userdata={userdata} />
             </Route>
 
-            <Route path="/mypage/checkpassword" component={CheckPassword} >
+            <Route path="/mypage/checkpassword" component={CheckPassword}>
               <CheckPassword userdata={userdata} />
             </Route>
 
-            <Route path="/modifyinfo" component={ModifyInfo} >
+            <Route path="/modifyinfo" component={ModifyInfo}>
               <ModifyInfo userdata={userdata} />
             </Route>
 
             <Route path="/signup" component={Signup} />
             <Route path="/findtheater" />
             <Route path="/board" />
-            <Route path="/movielist" />
+            <Route path="/movielist" component={MovieList} />
             <Route exact path="/" component={Main} />
           </Switch>
         </div>
