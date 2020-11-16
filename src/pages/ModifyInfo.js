@@ -1,29 +1,96 @@
-import React from "react";
+import axios from "axios";
+import React, { Component } from "react";
 
-function ModifyInfo(props) {
-  // console.log(props.userdata);
-  return (
-    <div className="signup_wrap">
-      <div className="signup email">
-        <span className="span">email: </span>
-        <input className="input input_email" type="email" defaultValue={1} readOnly></input>
+class ModifyInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: props.email,
+      password: props.password,
+      nickname: props.nickname,
+      errorMessage: ""
+    }
+    console.log(props.email)
+  }
+
+  handlePasswordChange = (e) => {
+    this.setState({
+      password: e.target.value,
+    });
+  };
+
+  handleNicknameChange = (e) => {
+    this.setState({
+      nickname: e.target.value,
+    });
+  };
+
+  ModifyCheck = (e) => {
+    e.preventDefault();
+    let error = document.getElementsByClassName('error')[0];
+    const { email, password, nickname } = this.state;
+    const modifyData = { email: email, password: password, nickName: nickname };
+
+    if (modifyData.password.length < 8) {
+      error.style.display = "block";
+      error.textContent = "비밀번호는 8자리 이상이어야 합니다.";
+    }
+    else if (!modifyData.nickName) {
+      error.style.display = "block";
+      error.textContent = "닉네임을 입력해주세요.";
+    }
+    else {
+      error.style.display = "none";
+
+      axios.put("http://3.35.208.49:5000/mypage/modification", modifyData)
+        .then((res) => {
+          // 회원가입에 성공하면 로그인 페이지로 이동
+          if (res.status === 201) {
+            document.location.href = "/";
+          }
+          else if (res.status === 409) {
+            error.style.display = "block";
+            this.setState({
+              errorMessage: "이메일 또는 닉네임이 이미 존재합니다."
+            })
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    }
+  }
+
+  render() {
+    const { email, password, nickname, errorMessage } = this.state;
+    const { handlePasswordChange, handleNicknameChange, ModifyCheck } = this;
+    console.log(email)
+
+    return (
+      <div className="signup_wrap">
+        <div className="signup email">
+          <span className="span">email: </span>
+          <input className="input input_email" type="email" defaultValue={email} readOnly></input>
+        </div>
+
+        <div className="signup password">
+          <span className="span">password: </span>
+          <input className="input input_password" type="password" placeholder="비밀번호는 8자리 이상"
+            password={password} onChange={handlePasswordChange.bind(this)}></input>
+        </div>
+
+        <div className="signup nickname">
+          <span className="span">nickname: </span>
+          <input className="input input_nickname" type="text" placeholder="ex) 김코딩"
+            nickname={nickname} onChange={handleNicknameChange.bind(this)}></input>
+        </div>
+
+        <p className="error">{errorMessage}</p>
+
+        <button className="signup_btn" onClick={ModifyCheck}>수정 완료</button>
       </div>
-
-      <div className="signup password">
-        <span className="span">password: </span>
-        <input className="input input_password" type="password" placeholder="비밀번호는 8자리 이상"></input>
-      </div>
-
-      <div className="signup nickname">
-        <span className="span">nickname: </span>
-        <input className="input input_nickname" type="text" defaultValue={1} placeholder="ex) 김코딩"></input>
-      </div>
-
-      <p className="error"></p>
-
-      <button className="signup_btn" onClick={ModifyCheck}>수정 완료</button>
-    </div>
-  );
+    );
+  }
 }
 
 // function getMypage() {
@@ -39,24 +106,5 @@ function ModifyInfo(props) {
 //       console.log(error);
 //     })
 // }
-
-function ModifyCheck() {
-  let password = document.getElementsByClassName('input_password')[0];
-  let nickname = document.getElementsByClassName('input_nickname')[0];
-  let errorMessage = document.getElementsByClassName('error')[0];
-
-  if (password.value.length < 8) {
-    errorMessage.style.display = "block";
-    errorMessage.textContent = "비밀번호는 8자리 이상이어야 합니다.";
-  }
-  else if (!nickname.value) {
-    errorMessage.style.display = "block";
-    errorMessage.textContent = "닉네임을 입력해주세요.";
-  }
-  else {
-    errorMessage.style.display = "none";
-    document.location.href = "/"
-  }
-}
 
 export default ModifyInfo;

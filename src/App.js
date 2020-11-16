@@ -75,15 +75,15 @@ class App extends Component {
             </Route>
 
             <Route exact path="/mypage" component={MyPage} >
-              <MyPage userdata={userdata} />
+              <MyPage />
             </Route>
 
             <Route path="/mypage/checkpassword" component={CheckPassword} >
-              <CheckPassword userdata={userdata} />
+              <CheckPassword />
             </Route>
 
             <Route path="/modifyinfo" component={ModifyInfo} >
-              <ModifyInfo userdata={userdata} />
+              <ModifyInfo />
             </Route>
 
             <Route path="/signup" component={Signup} />
