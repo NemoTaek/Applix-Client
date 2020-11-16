@@ -17,7 +17,7 @@ class Nav extends Component {
   }
 
   render() {
-    const { isLogin } = this.props;
+    const { isLogin, userid } = this.props;
     //props 핸들링 함수
     const { handleLogoutClose } = this.props;
     const { setIsMenuOpen } = this;
@@ -34,11 +34,23 @@ class Nav extends Component {
             className={this.state.isOpen ? "open" : "close"}
             onClick={setIsMenuOpen.bind(this)}
           >
-            <li>
-              <NavLink exact to="/" activeClassName="selected">
-                {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
-              </NavLink>
-            </li>
+            {isLogin ? (
+              <li>
+                <NavLink
+                  exact
+                  to={`/userid=${userid}`}
+                  activeClassName="selected"
+                >
+                  {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink exact to="/" activeClassName="selected">
+                  {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink to="/findtheater" activeClassName="selected">
                 영화관찾기
@@ -57,7 +69,10 @@ class Nav extends Component {
             {isLogin ? (
               <>
                 <li onClick={handleLogoutClose}>
-                  <NavLink to="/logout" activeClassName="selected">
+                  <NavLink
+                    to={`/logout/userid=${userid}`}
+                    activeClassName="selected"
+                  >
                     로그아웃
                   </NavLink>
                 </li>
