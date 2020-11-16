@@ -51,11 +51,17 @@ class Login extends Component {
     // axios 를 통해 서버 연결을 받아와서 출력 표시
     if (result) {
       await axios
-        // .post("서버 주소/login", userData)
-        .post("http://3.35.208.49:5000/signin", userData)
+        // {withCredentials: true,crossDomain: true}
+        .post("http://3.35.208.49:5000/signin", userData, {
+          withCredentials: true,
+          crossDomain: true,
+          credentials: "include",
+        })
         .then((res) => {
-          console.log(res);
-          onLogin(res.data.id);
+          const accessToken = res.data;
+          //cookie 만료시간을 토큰 만료시간과 동일하게 잡을 수 있는지 생각해보기
+          document.cookie = `sid=${accessToken.token}`;
+          onLogin(res.data.id, accessToken);
         })
         .catch((error) => {
           // console.log("에러", error.response.status);
@@ -87,7 +93,7 @@ class Login extends Component {
       errorValue,
       rememberchecked,
     } = this.state;
-    let { isLogin } = this.props;
+    let { isLogin, userid } = this.props;
     const {
       handleEmailChange,
       handlePasswordChange,
@@ -99,7 +105,7 @@ class Login extends Component {
       <>
         <div className="generalLogin">
           {isLogin ? (
-            <Redirect to="/" />
+            <Redirect to={`/userid=${userid}`} />
           ) : (
             <>
               <Logininput
