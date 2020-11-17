@@ -56,6 +56,12 @@ class App extends Component {
     }
   };
 
+  setisModalOpen = () => {
+    this.setState((prevState) => ({
+      isModalopen: !prevState.isModalopen,
+    }));
+  };
+
   setisModalClose = () => {
     this.setState((prevState) => ({
       isModalopen: !prevState.isModalopen,
@@ -66,7 +72,12 @@ class App extends Component {
   render() {
     const { isLogin, isModalopen, userid } = this.state;
     //핸들링 함수
-    const { handleLogoutClose, setisModalClose, onLogin } = this;
+    const {
+      handleLogoutClose,
+      setisModalClose,
+      setisModalOpen,
+      onLogin,
+    } = this;
 
     return (
       <div className="wrap">
@@ -111,7 +122,12 @@ class App extends Component {
             </Route>
 
             <Route path="/movielist">
-              <MovieList isLogin={isLogin} userid={userid} />
+              <MovieList
+                isLogin={isLogin}
+                userid={userid}
+                isModalopen={isModalopen}
+                setisModalOpen={setisModalOpen}
+              />
             </Route>
             <Route exact path="/" component={Main} />
           </Switch>
