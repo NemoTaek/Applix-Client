@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class NewPost extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
+    // console.log(props)
     this.state = {
       post_title: "",
       post_genre: "",
@@ -26,6 +26,24 @@ class NewPost extends Component {
     //   })
   }
 
+  handleTitleChange = (e) => {
+    this.setState({
+      post_title: e.target.value,
+    });
+  };
+
+  handleGenreChange = (e) => {
+    this.setState({
+      post_genre: e.target.value,
+    });
+  };
+
+  handleContentChange = (e) => {
+    this.setState({
+      post_content: e.target.value,
+    });
+  };
+
   goBoard = () => {
     const { post_title, post_genre, post_content } = this.state;
     const postData = { post_title: post_title, post_genre: post_genre, post_content: post_content };
@@ -37,19 +55,18 @@ class NewPost extends Component {
     //       document.location.href = "/board";
     //     }
     //     else if (!post_title || !post_genre || !post_content) {
-
+    //       alert("모든 칸을 입력해주세요");
     //     }
     //   })
     //   .catch((err) => {
     //     console.log(err);
     //   })
-
     document.location.href = "/board";
   };
 
   render() {
     // const { nickname } = this.state;
-    const { goBoard } = this;
+    const { handleTitleChange, handleGenreChange, handleContentChange, goBoard } = this;
     return (
       <div className="post_wrap">
         <table className="post">
@@ -57,13 +74,13 @@ class NewPost extends Component {
             <tr>
               <td className="item">제목</td>
               <td>
-                <input className="post_title"></input>
+                <input className="post_title" onChange={handleTitleChange.bind(this)}></input>
               </td>
             </tr>
             <tr>
               <td className="item">장르</td>
               <td>
-                <select className="post_genre" defaultValue="">
+                <select className="post_genre" defaultValue="" onChange={handleGenreChange.bind(this)}>
                   <option value=""></option>
                   <option value="액션">액션</option>
                   <option value="멜로">멜로</option>
@@ -78,7 +95,7 @@ class NewPost extends Component {
             <tr>
               <td className="item">내용</td>
               <td>
-                <textarea className="post_text"></textarea>
+                <textarea className="post_text" onChange={handleContentChange.bind(this)}></textarea>
               </td>
             </tr>
           </tbody>

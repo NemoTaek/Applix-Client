@@ -3,33 +3,30 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class ViewPost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      post_title: "",
-      post_genre: "",
-      post_content: ""
-    }
+  // constructor(props) {
+  //   super(props);
+  // }
 
-    // axios.get("http://3.35.208.49:5000/mypage")
-    //   .then((res) => {
-    //     // mypage 들어오면 닉네임을 받아와야 함
-    //     if (res.status === 201) {
-    //       this.setState({
-    //         nickname: res.data
-    //       })
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   })
-  }
+  // axios.get("http://3.35.208.49:5000/mypage")
+  //   .then((res) => {
+  //     // mypage 들어오면 닉네임을 받아와야 함
+  //     if (res.status === 201) {
+  //       this.setState({
+  //         nickname: res.data
+  //       })
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
 
   goBoard = () => {
     document.location.href = "/board";
   };
 
   render() {
+    console.log(this.props);
     // const { nickname } = this.state;
     const { goBoard } = this;
     return (
@@ -38,7 +35,7 @@ class ViewPost extends Component {
           <tbody>
             <tr>
               <td className="item">제목</td>
-              <td>1</td>
+              <td>{this.props.title}</td>
             </tr>
             <tr>
               <td className="item">장르</td>
