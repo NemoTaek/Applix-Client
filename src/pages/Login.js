@@ -58,8 +58,21 @@ class Login extends Component {
         })
         .then((res) => {
           const accessToken = res.data;
-          //cookie 만료시간을 토큰 만료시간과 동일하게 잡을 수 있는지 생각해보기
-          document.cookie = `sid=${accessToken.token}`;
+
+          if (document.cookie === "") {
+            document.cookie = `sid=${accessToken.token}`;
+          } else {
+            const compareToken = document.cookie.split("=");
+            if (accessToken.token !== compareToken[1]) {
+              document.cookie = `sid=${accessToken.token}`;
+              // console.log("로그인후토큰", accessToken.token);
+              // console.log("쿠키저장토큰", compareToken[1]);
+            } else {
+              // console.log("로그인후토큰", accessToken.token);
+              // console.log("쿠키저장토큰", compareToken[1]);
+              console.log("토큰 값이 동일하여 갱신하지 않습니다.");
+            }
+          }
           onLogin(res.data.id, res.data.nickName, accessToken);
         })
         .catch((error) => {
