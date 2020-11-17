@@ -13,10 +13,10 @@ class Board extends Component {
     axios.get("http://3.35.208.49:5000/board")
       .then((res) => {
         if (res.status === 200) {
+          console.log(res)
           this.setState({
             post_data: res.data
           })
-
         }
       })
       .catch((err) => {

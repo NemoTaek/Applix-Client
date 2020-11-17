@@ -29,7 +29,6 @@ import ViewPost from "../pages/ViewPost";
 
 class BoardItem extends Component {
   viewPost = () => {
-    console.log(this.props);
     return (
       <ViewPost post_data={this.props.post_data} />
     );
@@ -40,7 +39,7 @@ class BoardItem extends Component {
     return (
       <tr>
         <td>{this.props.post_data.id}</td>
-        <td>{this.props.post_data.gener}</td>
+        <td>{this.props.post_data.genre}</td>
         <td onClick={viewPost}>
           <Link to="/viewpost">{this.props.post_data.title}</Link>
         </td>

@@ -6,11 +6,10 @@ class ModifyInfo extends Component {
     super(props);
     this.state = {
       email: localStorage.getItem("ApplixID"),
-      password: props.password,
-      nickname: props.nickname,
+      password: "",
+      nickname: this.props.nickname,
       errorMessage: ""
     }
-    console.log(props.email)
   }
 
   handlePasswordChange = (e) => {
@@ -31,7 +30,7 @@ class ModifyInfo extends Component {
     const { email, password, nickname } = this.state;
     const modifyData = { email: email, password: password, nickName: nickname };
 
-    if (modifyData.password.length < 8) {
+    if (!modifyData.password || modifyData.password.length < 8) {
       error.style.display = "block";
       error.textContent = "비밀번호는 8자리 이상이어야 합니다.";
     }
@@ -64,7 +63,6 @@ class ModifyInfo extends Component {
   render() {
     const { email, password, nickname, errorMessage } = this.state;
     const { handlePasswordChange, handleNicknameChange, ModifyCheck } = this;
-    console.log(email)
 
     return (
       <div className="signup_wrap">
