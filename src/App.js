@@ -23,7 +23,7 @@ class App extends Component {
     isModalopen: false,
     userid: null,
     nickname: null,
-    currentPost: null,
+    currentPost: null
   };
 
   onLogin = async (userid, nickname, accessToken) => {
@@ -76,6 +76,8 @@ class App extends Component {
     this.setState({
       currentPost: currentPost,
     });
+    // console.log(currentPost)
+    // document.location.href = "/viewpost";
   };
 
   render() {

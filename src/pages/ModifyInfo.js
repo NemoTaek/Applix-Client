@@ -6,11 +6,10 @@ class ModifyInfo extends Component {
     super(props);
     this.state = {
       email: localStorage.getItem("ApplixID"),
-      password: props.password,
-      nickname: props.nickname,
-      errorMessage: "",
-    };
-    console.log(props.email);
+      password: "",
+      nickname: this.props.nickname,
+      errorMessage: ""
+    }
   }
 
   handlePasswordChange = (e) => {
@@ -62,7 +61,6 @@ class ModifyInfo extends Component {
   render() {
     const { email, password, nickname, errorMessage } = this.state;
     const { handlePasswordChange, handleNicknameChange, ModifyCheck } = this;
-    console.log(email);
 
     return (
       <div className="signup_wrap">

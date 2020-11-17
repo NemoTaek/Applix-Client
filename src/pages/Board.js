@@ -41,8 +41,8 @@ class Board extends Component {
               <th className="no">번호</th>
               <th className="genre">장르</th>
               <th className="title">제목</th>
-              <th className="writer">글쓴이</th>
-              <th className="write_date">등록일</th>
+              <th className="writer">등록일</th>
+              <th className="write_date">수정일</th>
             </tr>
             {post_data.map((el) => (
               <BoardItem

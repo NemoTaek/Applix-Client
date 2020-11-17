@@ -1,23 +1,6 @@
 import React, { Component } from "react";
 
 class ViewPost extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // axios.get("http://3.35.208.49:5000/mypage")
-  //   .then((res) => {
-  //     // mypage 들어오면 닉네임을 받아와야 함
-  //     if (res.status === 201) {
-  //       this.setState({
-  //         nickname: res.data
-  //       })
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
 
   goBoard = () => {
     document.location.href = "/board";
@@ -32,11 +15,11 @@ class ViewPost extends Component {
           <tbody>
             <tr>
               <td className="item">제목</td>
-              <td>{this.props.title}</td>
+              <td>{this.props.currentPost.title}</td>
             </tr>
             <tr>
               <td className="item">장르</td>
-              <td>1</td>
+              <td>{this.props.currentPost.genre}</td>
             </tr>
             <tr>
               <td className="item">닉네임</td>
