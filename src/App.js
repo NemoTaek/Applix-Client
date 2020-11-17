@@ -22,9 +22,10 @@ class App extends Component {
     isLogin: false,
     isModalopen: false,
     userid: null,
+    nickname: null,
   };
 
-  onLogin = async (userid, accessToken) => {
+  onLogin = async (userid, nickname, accessToken) => {
     // 로그인이 되면 axios Headers 인증 키에 accessToken 값 설정
     axios.defaults.headers.common[
       "Authorization"
@@ -33,8 +34,9 @@ class App extends Component {
     this.setState((prevState) => ({
       isLogin: !prevState.isLogin,
       userid: userid,
+      nickname: nickname,
     }));
-    console.log("현재 로그인상태", this.state.isLogin);
+    console.log("현재 로그인상태", this.state);
     // console.log("accessToken : ", accessToken.token);
     // console.log("axiosHeaders : ", axios.defaults.headers);
   };
@@ -70,7 +72,7 @@ class App extends Component {
   };
 
   render() {
-    const { isLogin, isModalopen, userid } = this.state;
+    const { isLogin, isModalopen, userid, nickname } = this.state;
     //핸들링 함수
     const {
       handleLogoutClose,
@@ -101,7 +103,9 @@ class App extends Component {
               />
             </Route>
 
-            <Route exact path="/mypage" component={MyPage} />
+            <Route exact path="/mypage">
+              <MyPage nickname={nickname} />
+            </Route>
             <Route path="/mypage/checkpassword" component={CheckPassword} />
             <Route path="/modifyinfo" component={ModifyInfo} />
 
@@ -109,14 +113,11 @@ class App extends Component {
 
             <Route path="/findtheater" />
 
-            <Route path="/board" component={Board}>
-            </Route>
+            <Route path="/board" component={Board}></Route>
 
-            <Route path="/newpost" component={NewPost}>
-            </Route>
+            <Route path="/newpost" component={NewPost}></Route>
 
-            <Route path="/viewpost" component={ViewPost}>
-            </Route>
+            <Route path="/viewpost" component={ViewPost}></Route>
 
             <Route path="/movielist">
               <MovieList
