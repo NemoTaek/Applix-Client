@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import "./error.css";
 import Logininput from "../components/Logininput";
 
 // axios.defaults.withCredentials = false;
