@@ -130,6 +130,7 @@ class MovieList extends Component {
       actor: data.actor,
       image: data.image,
       link: data.link,
+      genre: this.state.searchGenre,
     };
     // 로그인한 유저이면 전송이 가능하고, 로그인 안한 유저는 불가능하다.
     if (isLogin) {
