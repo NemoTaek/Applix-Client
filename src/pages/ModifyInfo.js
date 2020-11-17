@@ -81,7 +81,7 @@ class ModifyInfo extends Component {
 
         <div className="signup nickname">
           <span className="span">nickname: </span>
-          <input className="input input_nickname" type="text" placeholder="ex) 김코딩"
+          <input className="input input_nickname" type="text" defaultValue={nickname}
             nickname={nickname} onChange={handleNicknameChange.bind(this)}></input>
         </div>
 

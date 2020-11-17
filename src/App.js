@@ -99,15 +99,12 @@ class App extends Component {
             <Route path="/findtheater" />
 
             <Route path="/board" component={Board}>
-              <Board />
             </Route>
 
             <Route path="/newpost" component={NewPost}>
-              <NewPost />
             </Route>
 
             <Route path="/viewpost" component={ViewPost}>
-              <ViewPost />
             </Route>
 
             <Route path="/movielist">
