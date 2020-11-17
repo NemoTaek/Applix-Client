@@ -23,6 +23,7 @@ class App extends Component {
     isModalopen: false,
     userid: null,
     nickname: null,
+    currentPost: null
   };
 
   onLogin = async (userid, nickname, accessToken) => {
@@ -71,14 +72,23 @@ class App extends Component {
     document.location.href = "/";
   };
 
+  handleBoardView = (currentPost) => {
+    this.setState({
+      currentPost: currentPost,
+    });
+    // console.log(currentPost)
+    // document.location.href = "/viewpost";
+  };
+
   render() {
-    const { isLogin, isModalopen, userid, nickname } = this.state;
+    const { isLogin, isModalopen, userid, nickname, currentPost } = this.state;
     //핸들링 함수
     const {
       handleLogoutClose,
       setisModalClose,
       setisModalOpen,
       onLogin,
+      handleBoardView,
     } = this;
 
     return (
@@ -113,11 +123,15 @@ class App extends Component {
 
             <Route path="/findtheater" />
 
-            <Route path="/board" component={Board}></Route>
+            <Route path="/board">
+              <Board handleBoardView={handleBoardView} />
+            </Route>
 
             <Route path="/newpost" component={NewPost}></Route>
 
-            <Route path="/viewpost" component={ViewPost}></Route>
+            <Route path="/viewpost">
+              <ViewPost currentPost={currentPost} />
+            </Route>
 
             <Route path="/movielist">
               <MovieList
