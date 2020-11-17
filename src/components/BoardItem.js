@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import ViewPost from "../pages/ViewPost";
 
 // function BoardItem(props) {
@@ -23,28 +23,33 @@ import ViewPost from "../pages/ViewPost";
 //   );
 // }
 
-// 추후에 수정할 것
-// gener -> genre
-// UserId -> nickName
-
 class BoardItem extends Component {
+  state = {
+    title: this.props.post_data.title,
+    genre: this.props.post_data.genre,
+  }
+
   viewPost = () => {
-    return (
-      <ViewPost post_data={this.props.post_data} />
-    );
+    // return (
+    //   <Route path="/viewpost" >
+    //     <ViewPost title={this.state.title} genre={this.state.genre} />
+    //   </Route>
+    // );
+    // document.location.href = "/viewpost"
   }
 
   render() {
     const { viewPost } = this;
+    const date = this.props.post_data.createdAt.substring(0, 10);
     return (
       <tr>
         <td>{this.props.post_data.id}</td>
         <td>{this.props.post_data.genre}</td>
-        <td onClick={viewPost}>
+        <td >
           <Link to="/viewpost">{this.props.post_data.title}</Link>
         </td>
-        <td>{this.props.post_data.UserId}</td>
-        <td>{this.props.post_data.createdAt}</td>
+        <td>111</td>
+        <td>{date}</td>
       </tr>
     );
   }

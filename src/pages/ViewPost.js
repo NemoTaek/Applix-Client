@@ -1,25 +1,6 @@
-import axios from "axios";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 
 class ViewPost extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
-  // axios.get("http://3.35.208.49:5000/mypage")
-  //   .then((res) => {
-  //     // mypage 들어오면 닉네임을 받아와야 함
-  //     if (res.status === 201) {
-  //       this.setState({
-  //         nickname: res.data
-  //       })
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
 
   goBoard = () => {
     document.location.href = "/board";
@@ -27,7 +8,6 @@ class ViewPost extends Component {
 
   render() {
     console.log(this.props);
-    // const { nickname } = this.state;
     const { goBoard } = this;
     return (
       <div className="post_wrap">

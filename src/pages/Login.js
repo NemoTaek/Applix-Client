@@ -60,7 +60,7 @@ class Login extends Component {
           const accessToken = res.data;
           //cookie 만료시간을 토큰 만료시간과 동일하게 잡을 수 있는지 생각해보기
           document.cookie = `sid=${accessToken.token}`;
-          onLogin(res.data.id, accessToken);
+          onLogin(res.data.id, res.data.nickName, accessToken);
         })
         .catch((error) => {
           // console.log("에러", error.response.status);
