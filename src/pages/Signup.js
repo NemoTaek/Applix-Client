@@ -62,15 +62,13 @@ class Signup extends Component {
           // 회원가입에 성공하면 로그인 페이지로 이동
           if (res.status === 201) {
             document.location.href = "/login";
-          } else if (res.status === 409) {
-            error.style.display = "block";
-            this.setState({
-              errorMessage: "이메일 또는 닉네임이 이미 존재합니다.",
-            });
           }
         })
         .catch((err) => {
-          console.log(err);
+          error.style.display = "block";
+          this.setState({
+            errorMessage: "이메일 또는 닉네임이 이미 존재합니다.",
+          });
         });
     }
   };
