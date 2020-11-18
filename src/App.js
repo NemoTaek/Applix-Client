@@ -12,6 +12,7 @@ import Board from "./pages/Board";
 import NewPost from "./pages/NewPost";
 import ViewPost from "./pages/ViewPost";
 import MovieList from "./pages/MovieList";
+import About from "./pages/About";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
@@ -67,6 +68,7 @@ class App extends Component {
       isMainOpen: !prevState.isMainOpen,
     }));
 
+    document.location.href = "/about";
     document.body.style.overflowY = "scroll";
   };
 
@@ -140,7 +142,7 @@ class App extends Component {
 
             <Route path="/signup" component={Signup} />
 
-            <Route path="/findtheater" />
+            <Route path="/about" component={About} />
 
             <Route path="/board">
               <Board handleBoardView={handleBoardView} />
@@ -165,7 +167,7 @@ class App extends Component {
             </Route>
           </Switch>
         </div>
-        <footer></footer>
+        {/* <footer></footer> */}
       </div>
     );
   }

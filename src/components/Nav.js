@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
-import logo from "../pages/logo.png";
 
 class Nav extends Component {
   state = {
@@ -56,7 +55,7 @@ class Nav extends Component {
             )} */}
             <li>
               <NavLink
-                to="/findtheater"
+                to="/about"
                 className="navlogo"
                 activeClassName="navlogo selected"
               >

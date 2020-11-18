@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { Component } from "react";
 
-axios.interceptors.request.use(function (config) {
-  const getToken = document.cookie.split("=");
-  config.headers.Authorization = getToken[1];
+// axios.interceptors.request.use(function (config) {
+//   const getToken = document.cookie.split("=");
+//   config.headers.Authorization = getToken[1];
 
-  return config;
-});
+//   return config;
+// });
 
 class ModifyInfo extends Component {
   constructor(props) {
@@ -36,6 +36,14 @@ class ModifyInfo extends Component {
     let error = document.getElementsByClassName("error")[0];
     const { password, nickname } = this.state;
     const modifyData = { password: password, nickName: nickname };
+
+    await axios.interceptors.request.use(function (config) {
+      const getToken = document.cookie.split("=");
+      config.headers.Authorization = getToken[1];
+
+      return config;
+    });
+
     console.log("정보변경 Headers : ", axios.defaults.headers);
     if (!modifyData.password || modifyData.password.length < 8) {
       error.style.display = "block";

@@ -140,11 +140,16 @@ class MovieList extends Component {
       link: data.link,
       genre: this.state.sendGenre,
     };
+
+    const wishCount = 0;
     // 로그인한 유저이면 전송이 가능하고, 로그인 안한 유저는 불가능하다.
     if (isLogin) {
       await axios
         .post("http://3.35.208.49:5000/search", sendWishBody)
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem(`wish${userid}?${wishCount}`, data.title);
+        })
         .catch((error) => {
           if (error.response) {
             // 409 : 중복되는 찜목록
