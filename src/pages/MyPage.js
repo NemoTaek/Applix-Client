@@ -1,7 +1,7 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { Component } from "react";
-import { Route, Link, Switch } from "react-router-dom";
-import Board from "./Board";
+import { Link } from "react-router-dom";
+// import Board from "./Board";
 
 class MyPage extends Component {
   render() {

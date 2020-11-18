@@ -8,6 +8,39 @@
   outline: none;
 }
 
+body {
+  position: relative;
+  overflow: hidden;
+}
+
+/*---------- Main(Home) page ----------*/
+
+.Main-logo {
+  margin-top: -50px;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.Main {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 200px;
+  font-family: "Bebas Neue", cursive;
+  /* calc(10px + 2vmin); */
+  color: rgb(104, 10, 10);
+}
+
+.Main.hidden {
+  visibility: hidden;
+}
+
 header {
   width: 100%;
   height: 50px;
@@ -27,6 +60,11 @@ header {
   text-align: center;
   position: relative;
   top: 50px;
+}
+
+.Main {
+  z-index: 9999;
+  margin-top: -50px;
 }
 
 /*---------- Modal message ----------*/
@@ -98,14 +136,17 @@ input {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  background-color: #f2f2f2;
 }
 
 .signup > span {
   display: inline-block;
   width: 150px;
   height: 30px;
-  font-size: 20px;
+  /* font-size: 20px; */
   text-align: left;
+  padding-left: 20px;
+  font-weight: bold;
 }
 
 .signup > input {
@@ -113,12 +154,22 @@ input {
   width: 300px;
   height: 50px;
   font-size: 15px;
+  border: 0px;
+  border-left: 2px solid #cccccc;
 }
 
 .signup_btn {
   width: 450px;
   height: 50px;
-  font-size: 20px;
+  /* font-size: 20px; */
+  color: white;
+  background-color: black;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.signup_btn:hover {
+  background-color: gray;
 }
 
 .error {
@@ -176,7 +227,7 @@ footer {
   bottom: 0;
   width: 100%;
   height: 150px;
-  background-color: black;
+  background-color: #282c34;
 }
 
 /* -------------------------board css-------------------------------*/

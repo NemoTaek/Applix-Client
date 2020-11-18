@@ -1,6 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 class NewPost extends Component {
   constructor(props) {
@@ -9,8 +9,8 @@ class NewPost extends Component {
     this.state = {
       post_title: "",
       post_genre: "",
-      post_content: ""
-    }
+      post_content: "",
+    };
 
     // axios.get("http://3.35.208.49:5000/mypage")
     //   .then((res) => {
@@ -45,8 +45,8 @@ class NewPost extends Component {
   };
 
   goBoard = () => {
-    const { post_title, post_genre, post_content } = this.state;
-    const postData = { post_title: post_title, post_genre: post_genre, post_content: post_content };
+    // const { post_title, post_genre, post_content } = this.state;
+    // const postData = { post_title: post_title, post_genre: post_genre, post_content: post_content };
 
     // axios.post("http://3.35.208.49:5000/post", postData)
     //   .then((res) => {
@@ -66,7 +66,12 @@ class NewPost extends Component {
 
   render() {
     // const { nickname } = this.state;
-    const { handleTitleChange, handleGenreChange, handleContentChange, goBoard } = this;
+    const {
+      handleTitleChange,
+      handleGenreChange,
+      handleContentChange,
+      goBoard,
+    } = this;
     return (
       <div className="post_wrap">
         <table className="post">
@@ -74,13 +79,20 @@ class NewPost extends Component {
             <tr>
               <td className="item">제목</td>
               <td>
-                <input className="post_title" onChange={handleTitleChange.bind(this)}></input>
+                <input
+                  className="post_title"
+                  onChange={handleTitleChange.bind(this)}
+                ></input>
               </td>
             </tr>
             <tr>
               <td className="item">장르</td>
               <td>
-                <select className="post_genre" defaultValue="" onChange={handleGenreChange.bind(this)}>
+                <select
+                  className="post_genre"
+                  defaultValue=""
+                  onChange={handleGenreChange.bind(this)}
+                >
                   <option value=""></option>
                   <option value="액션">액션</option>
                   <option value="멜로">멜로</option>
@@ -95,14 +107,19 @@ class NewPost extends Component {
             <tr>
               <td className="item">내용</td>
               <td>
-                <textarea className="post_text" onChange={handleContentChange.bind(this)}></textarea>
+                <textarea
+                  className="post_text"
+                  onChange={handleContentChange.bind(this)}
+                ></textarea>
               </td>
             </tr>
           </tbody>
         </table>
 
         <div className="post_button_wrap">
-          <button className="new_post_btn" onClick={goBoard}>작성 완료</button>
+          <button className="new_post_btn" onClick={goBoard}>
+            작성 완료
+          </button>
         </div>
       </div>
     );

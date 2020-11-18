@@ -1,7 +1,14 @@
 import React from "react";
+import logo from "./logo.gif";
 
-function Main(props) {
-  return <div>메인페이지 테스트</div>;
+function Main({ isMainOpen, setisMainOpen }) {
+  document.addEventListener("click", setisMainOpen, true);
+  return (
+    <div className={isMainOpen ? "Main hidden" : "Main"}>
+      <img src={logo} className="Main-logo" alt="logo" />
+      {/* <p> Applix</p> */}
+    </div>
+  );
 }
 
 export default Main;
