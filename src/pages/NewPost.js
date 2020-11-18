@@ -1,6 +1,27 @@
 import axios from "axios";
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+const moviegerne = [
+  "드라마",
+  "판타지",
+  "서부",
+  "공포",
+  "로맨스",
+  "모험",
+  "스릴러",
+  "느와르",
+  "컬트",
+  "다큐멘터리",
+  "코미디",
+  "가족",
+  "미스터리",
+  "전쟁",
+  "애니메이션",
+  "범죄",
+  "뮤지컬",
+  "SF",
+];
 
 class NewPost extends Component {
   constructor(props) {
@@ -10,7 +31,7 @@ class NewPost extends Component {
       post_title: "",
       post_genre: "",
       post_content: "",
-      nickname: this.props.nickname
+      nickname: this.props.nickname,
     };
   }
 
@@ -34,25 +55,29 @@ class NewPost extends Component {
 
   goBoard = () => {
     const { post_title, post_genre, post_content } = this.state;
-    const postData = { title: post_title, genre: post_genre, contents: post_content };
+    const postData = {
+      title: post_title,
+      genre: post_genre,
+      contents: post_content,
+    };
 
-    axios.post("http://3.35.208.49:5000/board/newpost", postData)
+    axios
+      .post("http://3.35.208.49:5000/board/newpost", postData)
       .then((res) => {
-        // 회원가입에 성공하면 로그인 페이지로 이동
-        if (res.status === 201) {
-          document.location.href = "/board";
-        }
-        else if (res.status === 422) {
+        document.location.href = "/board";
+      })
+      .catch((error) => {
+        if (error.response) {
+          // 422 : 모든 칸  >> 서버에서 안 오고 있음
           alert("모든 칸을 입력해주세요");
+        } else if (error.request) {
+          // 500 : server error
+          console.log(error);
         }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
+      });
   };
 
   render() {
-    // const { nickname } = this.state;
     const {
       handleTitleChange,
       handleGenreChange,
@@ -74,10 +99,12 @@ class NewPost extends Component {
               <td className="post_item">장르</td>
               <td className="post_value">
                 <select defaultValue="" onChange={handleGenreChange.bind(this)}>
-                  <option value=""></option>
-                  <option value="액션">액션</option>
-                  <option value="멜로">멜로</option>
-                  <option value="스릴러">스릴러</option>
+                  <option disabled hidden value=""></option>
+                  {moviegerne.map((ele) => (
+                    <option value={ele} key={ele}>
+                      {ele}
+                    </option>
+                  ))}
                 </select>
               </td>
               <td className="post_item">닉네임</td>
@@ -87,15 +114,19 @@ class NewPost extends Component {
             <tr>
               <td className="post_item">내용</td>
               <td className="post_text" colSpan="3">
-                <textarea onChange={handleContentChange.bind(this)} ></textarea>
+                <textarea onChange={handleContentChange.bind(this)}></textarea>
               </td>
             </tr>
           </tbody>
         </table>
 
         <div className="post_button_wrap">
+          <button className="new_post_btn">
+            <Link to="/board">목록으로</Link>
+          </button>
+
           <button className="new_post_btn" onClick={goBoard}>
-            작성 완료
+            작성완료
           </button>
         </div>
       </div>

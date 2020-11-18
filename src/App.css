@@ -331,16 +331,17 @@ input {
 .post_wrap {
   width: 100%;
   height: 100vh;
-  padding: 10px;
-  margin-top: 30px;
 }
 
 .board_wrap .board,
 .post_wrap .post {
   width: 100%;
-  border: black 1px solid;
-  font-size: 24px;
-  border-radius: 10px;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.board_wrap .board a:visited {
+  color: tomato;
 }
 
 .board_wrap .board > tbody > tr,
@@ -348,8 +349,9 @@ input {
   width: 100%;
   height: 30px;
 }
+
 .board_wrap .board > tbody > tr:nth-child(odd) {
-  background-color: #cfcfcf;
+  background-color: #dadada;
   padding: 10px;
 }
 .board_wrap .board > tbody > tr:first-child {
@@ -362,12 +364,22 @@ input {
 .genre {
   width: 10%;
 }
+
 .board_wrap .board > tbody > tr .title {
   width: 50%;
 }
+
 .board_wrap .board > tbody > tr .writer,
 .write_date {
   width: 15%;
+}
+
+.board_wrap .board > tbody > tr th:nth-of-type(1) {
+  border-top-left-radius: 10px;
+}
+
+.board_wrap .board > tbody > tr th:nth-of-type(5) {
+  border-top-right-radius: 10px;
 }
 
 .board_wrap .board_button_wrap,
@@ -375,21 +387,37 @@ input {
   width: 100%;
   margin-top: 20px;
 }
-.board_wrap .board_button_wrap .prev_btn,
-.post_wrap .post_button_wrap .prev_btn {
-  float: left;
+
+.board_wrap .board_button_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
 }
-.board_wrap .board_button_wrap .new_post_btn,
-.post_wrap .post_button_wrap .new_post_btn {
+
+.board_wrap .board_button_wrap button,
+.post_wrap .post_button_wrap button,
+.view_button_wrap button {
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 10px;
   width: 150px;
-  font-size: 24px;
   padding: 10px;
-  background-color: #000000;
-  color: #ffffff;
+  cursor: pointer;
 }
-.board_wrap .board_button_wrap .next_btn,
-.post_wrap .post_button_wrap .next_btn {
-  float: right;
+
+.board_wrap .board_button_wrap button:hover,
+.post_wrap .post_button_wrap button:hover,
+.view_button_wrap button:hover {
+  background-color: gray;
+}
+
+.board_wrap .board_button_wrap a:visited,
+.post_wrap .post_button_wrap a:visited,
+.view_button_wrap a:visited {
+  color: white;
 }
 
 /* -------------------------newpost css-------------------------------*/
@@ -401,7 +429,6 @@ input {
 .post_wrap .post > tbody > tr > td {
   height: 50px;
   text-align: center;
-  font-size: 24px;
   border: black 1px solid;
 }
 
@@ -425,21 +452,20 @@ input {
 .post_wrap .post > tbody > tr .post_value {
   width: 30%;
   height: 50%;
-  text-align: left;
-  padding-left: 10px;
-  padding-right: 30px;
-  font-size: 24px;
+  text-align: center;
+  padding-right: 5px;
+  font-weight: bold;
 }
 .post_wrap .post > tbody > tr .post_value > select {
   width: 100%;
   height: 100%;
   border: none;
-  font-size: 24px;
   text-align: left;
   background-color: #ffffff;
 }
+
 .post_wrap .post > tbody > tr .post_value > select > option {
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .post_wrap .post > tbody > tr .post_text {
@@ -451,8 +477,26 @@ input {
   width: 100%;
   height: 200px;
   border: none;
-  font-size: 24px;
+  font-size: 20px;
 }
+
+.post_button_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* -------------------------view post css-------------------------------*/
+
+.view_button_wrap {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
 /* ------------------------scrollbar css-------------------------------*/
 body::-webkit-scrollbar {
   /* 스크롤바 전체 */
