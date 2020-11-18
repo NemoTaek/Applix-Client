@@ -243,8 +243,8 @@ footer {
 .post_wrap .post {
   width: 100%;
   border: black 1px solid;
-  border-collapse: collapse;
   font-size: 24px;
+  border-radius: 10px;
 }
 
 .board_wrap .board > tbody > tr,
@@ -252,14 +252,14 @@ footer {
   width: 100%;
   height: 30px;
 }
+.board_wrap .board > tbody > tr:nth-child(odd){
+  background-color: #cfcfcf;
+  padding: 10px;
+}
 .board_wrap .board > tbody > tr:first-child {
   height: 50px;
-  background-color: #ff7e7c;
-}
-
-.board_wrap .board > tbody > tr > th, td{
-  border: black 1px solid;
-  padding: 10px;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .board_wrap .board > tbody > tr .no,
@@ -275,66 +275,87 @@ footer {
   width: 15%;
 }
 
-.board_wrap .board > tbody > tr > td {
-  border-top: black 1px solid;
-}
-
 .board_wrap .board_button_wrap,
 .post_wrap .post_button_wrap {
   width: 100%;
-  height: 30px;
   margin-top: 20px;
+}
+.board_wrap .board_button_wrap .prev_btn,
+.post_wrap .post_button_wrap .prev_btn {
+  float: left;
 }
 .board_wrap .board_button_wrap .new_post_btn,
 .post_wrap .post_button_wrap .new_post_btn {
-  float: right;
+  width: 150px;
   font-size: 24px;
   padding: 10px;
-  background-color: #00e1ff;
+  background-color: #000000;
+  color: #ffffff;
+}
+.board_wrap .board_button_wrap .next_btn,
+.post_wrap .post_button_wrap .next_btn {
+  float: right;
 }
 
 /* -------------------------newpost css-------------------------------*/
-/* .post_wrap .post > tbody > tr{
-  width: 100%;
-  height: 30px;
-} */
-
 .post_wrap .post > tbody > tr .item {
   width: 20%;
   text-align: center;
 }
 
 .post_wrap .post > tbody > tr > td {
-  width: 80%;
-  height: 100px;
-  text-align: left;
-  font-size: 36px;
+  height: 50px;
+  text-align: center;
+  font-size: 24px;
+  border: black 1px solid;
 }
 
+.post_wrap .post > tbody > tr .post_item {
+  width: 20%;
+  background-color: #000000;
+  color: #ffffff;
+}
 .post_wrap .post > tbody > tr .post_title {
-  width: 90%;
-  height: 50%;
-  float: left;
+  width: 80%;
+}
+.post_wrap .post > tbody > tr .post_title > input{
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border: none;
   text-align: left;
-  padding-left: 10px;
   font-size: 24px;
 }
-.post_wrap .post > tbody > tr .post_genre {
+
+.post_wrap .post > tbody > tr .post_value {
   width: 30%;
   height: 50%;
-  float: left;
-  padding-left: 10px;
-  font-size: 24px;
-}
-.post_wrap .post > tbody > tr .post_nickname {
   text-align: left;
+  padding-left: 10px;
+  padding-right: 30px;
   font-size: 24px;
 }
+.post_wrap .post > tbody > tr .post_value > select{
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 24px;
+  text-align: left;
+  background-color: #ffffff;
+}
+.post_wrap .post > tbody > tr .post_value > select > option{
+  font-size: 18px;
+}
+
 .post_wrap .post > tbody > tr .post_text {
   width: 100%;
+  padding-left: 10px;
+  padding-right: 30px;
+}
+.post_wrap .post > tbody > tr .post_text > textarea{
+  width: 100%;
   height: 200px;
-  float: left;
-  padding: 10px;
+  border: none;
   font-size: 24px;
 }
 /* ------------------------scrollbar css-------------------------------*/

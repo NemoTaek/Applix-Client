@@ -55,8 +55,14 @@ class Board extends Component {
         </table>
 
         <div className="board_button_wrap">
+          <button className="new_post_btn prev_btn">
+            이전 목록
+          </button>
           <button className="new_post_btn" onClick={newPost}>
-            새 글 작성
+            글쓰기
+          </button>
+          <button className="new_post_btn next_btn">
+            다음 목록
           </button>
         </div>
       </div>

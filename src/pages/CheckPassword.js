@@ -12,6 +12,12 @@ class CheckPassword extends Component {
     };
   }
 
+  handleKeyevent = (e) => {
+    if (e.key === "Enter") {
+      this.handlePassword(e);
+    }
+  };
+
   handlePasswordCheck = (e) => {
     this.setState({
       password: e.target.value,
@@ -58,7 +64,7 @@ class CheckPassword extends Component {
   };
 
   render() {
-    const { handlePassword, handlePasswordCheck } = this;
+    const { handlePassword, handlePasswordCheck, handleKeyevent } = this;
     const { email, password, nickname, errorMessage } = this.state;
     return (
       <div className="check_password_wrap">
@@ -67,7 +73,8 @@ class CheckPassword extends Component {
           <input
             className="input input_password"
             type="password"
-            onChange={handlePasswordCheck.bind(this)}
+            onChange={handlePasswordCheck}
+            onKeyPress={handleKeyevent}
           ></input>
         </div>
 
