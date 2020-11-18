@@ -10,20 +10,21 @@ class MyPage extends Component {
     return (
       <div className="mypage_wrap">
         <div className="info">
-          <p className="welcome">{nickname} 님 환영합니다.</p>
+          <p className="welcome"><br /><br /><br />
+            <span>{nickname}</span> 님 환영합니다.<br /><br /><br /></p>
         </div>
 
         <div className="mypage_list">
-          <div className="list">
+          <div className="list"><br /><br />
             <Link to="/board">내가 쓴 게시글 목록</Link>
-            {/* <Switch>
-              <Route path="/board" component={Board} nickname={nickname}>
-              </Route>
-            </Switch> */}
+            <br /><br /><br />
           </div>
-          <div className="list">내가 찜한 영화 목록</div>
-          <div className="list">
+          <div className="list"><br /><br />
+            <Link to="/movielist">내가 찜한 영화 목록</Link>
+            <br /><br /><br /></div>
+          <div className="list"><br /><br />
             <Link to="/mypage/checkpassword">회원정보 변경</Link>
+            <br /><br /><br />
           </div>
         </div>
       </div>
