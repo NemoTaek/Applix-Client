@@ -55,6 +55,8 @@ class App extends Component {
         isModalopen: !prevState.isModalopen,
         userid: null,
       }));
+      // axios 헤더 초기화
+      axios.defaults.headers.common["Authorization"] = null;
     } catch (error) {
       throw error;
     }
