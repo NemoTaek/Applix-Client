@@ -37,7 +37,7 @@ class Board extends Component {
       <div className="board_wrap">
         <table className="board">
           <tbody>
-            <tr>
+            <tr className="board_title">
               <th className="no">번호</th>
               <th className="genre">장르</th>
               <th className="title">제목</th>

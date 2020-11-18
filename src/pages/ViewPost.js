@@ -23,7 +23,7 @@ class ViewPost extends Component {
             </tr>
             <tr>
               <td className="item">닉네임</td>
-              <td className="post_nickname">1</td>
+              <td>1</td>
             </tr>
             <tr>
               <td className="item">내용</td>
