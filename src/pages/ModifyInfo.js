@@ -36,9 +36,6 @@ class ModifyInfo extends Component {
     const { password, nickname } = this.state;
     const modifyData = { password: password, nickName: nickname };
 
-    const getToken = document.cookie.split("=");
-    axios.defaults.headers.common["Authorization"] = `Bearer ${getToken[1]}`;
-
     console.log("정보변경 Headers : ", axios.defaults.headers);
     if (!modifyData.password || modifyData.password.length < 8) {
       error.style.display = "block";
@@ -49,12 +46,16 @@ class ModifyInfo extends Component {
     } else {
       error.style.display = "none";
 
+      const getToken = document.cookie.split("=");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${getToken[1]}`;
+
       await axios
         .put("http://3.35.208.49:5000/mypage/userinfo", modifyData)
         .then((res) => {
+          // console.log(res.data);
           // 회원정보 변경에 성공하면 mypage로 이동
           if (res.status === 200) {
-            document.location.href = "/mypage";
+            document.location.href = "/";
           } else if (res.status === 409) {
             error.style.display = "block";
             this.setState({
@@ -70,7 +71,12 @@ class ModifyInfo extends Component {
 
   render() {
     const { email, password, nickname, errorMessage } = this.state;
-    const { handlePasswordChange, handleNicknameChange, ModifyCheck, handleKeyevent } = this;
+    const {
+      handlePasswordChange,
+      handleNicknameChange,
+      ModifyCheck,
+      handleKeyevent,
+    } = this;
     console.log(nickname);
 
     return (
