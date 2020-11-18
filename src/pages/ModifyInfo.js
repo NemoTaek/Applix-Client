@@ -7,10 +7,16 @@ class ModifyInfo extends Component {
     this.state = {
       email: localStorage.getItem("ApplixID"),
       password: "",
-      nickname: this.props.nickname,
+      nickname: "",
       errorMessage: "",
     };
   }
+
+  handleKeyevent = (e) => {
+    if (e.key === "Enter") {
+      this.ModifyCheck(e);
+    }
+  };
 
   handlePasswordChange = (e) => {
     this.setState({
@@ -64,7 +70,8 @@ class ModifyInfo extends Component {
 
   render() {
     const { email, password, nickname, errorMessage } = this.state;
-    const { handlePasswordChange, handleNicknameChange, ModifyCheck } = this;
+    const { handlePasswordChange, handleNicknameChange, ModifyCheck, handleKeyevent } = this;
+    console.log(nickname);
 
     return (
       <div className="signup_wrap">
@@ -86,6 +93,7 @@ class ModifyInfo extends Component {
             placeholder="비밀번호는 8자리 이상"
             password={password}
             onChange={handlePasswordChange.bind(this)}
+            onKeyPress={handleKeyevent}
           ></input>
         </div>
 
@@ -97,6 +105,7 @@ class ModifyInfo extends Component {
             defaultValue={nickname}
             nickname={nickname}
             onChange={handleNicknameChange.bind(this)}
+            onKeyPress={handleKeyevent}
           ></input>
         </div>
 

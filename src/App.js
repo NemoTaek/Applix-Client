@@ -137,8 +137,12 @@ class App extends Component {
             <Route exact path="/mypage">
               <MyPage nickname={nickname} />
             </Route>
+
             <Route path="/mypage/checkpassword" component={CheckPassword} />
-            <Route path="/modifyinfo" component={ModifyInfo} />
+
+            <Route path="/modifyinfo">
+              <ModifyInfo nickname={nickname} />
+            </Route>
 
             <Route path="/signup" component={Signup} />
 
