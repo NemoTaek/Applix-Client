@@ -174,3 +174,10 @@ class App extends Component {
 }
 
 export default App;
+
+// axios.interceptors.request.use(function (config) {
+//   const getToken = document.cookie.split("=");
+//   config.headers.Authorization = getToken[1];
+
+//   return config;
+// });
