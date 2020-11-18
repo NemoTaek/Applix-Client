@@ -1,13 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
 
-axios.interceptors.request.use(function (config) {
-  const getToken = document.cookie.split("=");
-  config.headers.Authorization = getToken[1];
-
-  return config;
-});
-
 class ModifyInfo extends Component {
   constructor(props) {
     super(props);
@@ -36,6 +29,10 @@ class ModifyInfo extends Component {
     let error = document.getElementsByClassName("error")[0];
     const { password, nickname } = this.state;
     const modifyData = { password: password, nickName: nickname };
+
+    const getToken = document.cookie.split("=");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${getToken[1]}`;
+
     console.log("정보변경 Headers : ", axios.defaults.headers);
     if (!modifyData.password || modifyData.password.length < 8) {
       error.style.display = "block";
@@ -49,9 +46,9 @@ class ModifyInfo extends Component {
       await axios
         .put("http://3.35.208.49:5000/mypage/userinfo", modifyData)
         .then((res) => {
-          // 회원가입에 성공하면 로그인 페이지로 이동
+          // 회원정보 변경에 성공하면 mypage로 이동
           if (res.status === 200) {
-            document.location.href = "/";
+            document.location.href = "/mypage";
           } else if (res.status === 409) {
             error.style.display = "block";
             this.setState({
@@ -112,19 +109,5 @@ class ModifyInfo extends Component {
     );
   }
 }
-
-// function getMypage() {
-//   axios.get('/mypage', {
-//     headers: {
-//       session: req.session.userid
-//     }
-//   })
-//     .then(function (response) {
-//       console.log(response);
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     })
-// }
 
 export default ModifyInfo;

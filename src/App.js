@@ -12,6 +12,7 @@ import Board from "./pages/Board";
 import NewPost from "./pages/NewPost";
 import ViewPost from "./pages/ViewPost";
 import MovieList from "./pages/MovieList";
+import About from "./pages/About";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
@@ -55,6 +56,8 @@ class App extends Component {
         isModalopen: !prevState.isModalopen,
         userid: null,
       }));
+      // axios 헤더 초기화
+      axios.defaults.headers.common["Authorization"] = null;
     } catch (error) {
       throw error;
     }
@@ -65,6 +68,7 @@ class App extends Component {
       isMainOpen: !prevState.isMainOpen,
     }));
 
+    document.location.href = "/about";
     document.body.style.overflowY = "scroll";
   };
 
@@ -138,7 +142,7 @@ class App extends Component {
 
             <Route path="/signup" component={Signup} />
 
-            <Route path="/findtheater" />
+            <Route path="/about" component={About} />
 
             <Route path="/board">
               <Board handleBoardView={handleBoardView} />
@@ -163,10 +167,17 @@ class App extends Component {
             </Route>
           </Switch>
         </div>
-        <footer></footer>
+        {/* <footer></footer> */}
       </div>
     );
   }
 }
 
 export default App;
+
+// axios.interceptors.request.use(function (config) {
+//   const getToken = document.cookie.split("=");
+//   config.headers.Authorization = getToken[1];
+
+//   return config;
+// });
