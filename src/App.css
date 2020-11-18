@@ -188,30 +188,135 @@ input {
 }
 
 .mypage_wrap .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 430px;
   padding: 10px;
 }
-.mypage_wrap .info > p{
+.mypage_wrap .info > p {
   font-size: 36px;
+  border-bottom: 2px solid gray;
+  padding-bottom: 20px;
 }
-.mypage_wrap .info > p > span{
+.mypage_wrap .info > p > span {
   font-size: 72px;
   color: pink;
 }
 
 .mypage_wrap .mypage_list {
   width: 100%;
-  padding: 10px;
+  padding: 30px;
 }
 
-.mypage_wrap .mypage_list .list {
+.mypage_list .list {
   display: inline-block;
-  width: 33.3%;
-  height: 100%;
+  width: 30%;
+  height: 300px;
+  line-height: 230px;
   padding: 10px;
-  border: green 5px solid;
+  margin: 5px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 36px;
+  /* font-size: 36px; */
+}
+
+.mypage_list .list {
+  margin-top: 20px;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+}
+.mypage_list a:visited {
+  color: white;
+}
+
+.mypage_list a:hover {
+  border-bottom: 2px soild black;
+}
+
+.mypage_list img {
+  width: 40px;
+}
+
+.mypage_list .list:hover {
+  background-color: tomato;
+
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
+  transform-origin: center bottom;
+
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+/*the animation definition*/
+@-webkit-keyframes bounce {
+  0%,
+  100%,
+  20%,
+  53%,
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+}
+@keyframes bounce {
+  0%,
+  100%,
+  20%,
+  53%,
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    -ms-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    -ms-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    -ms-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
 }
 
 /* -------------------------check password css-------------------------------*/
@@ -219,15 +324,6 @@ input {
   width: 100px;
   height: 50px;
   font-size: 20px;
-}
-
-/* -------------------------modify info css-------------------------------*/
-
-footer {
-  bottom: 0;
-  width: 100%;
-  height: 150px;
-  background-color: #282c34;
 }
 
 /* -------------------------board css-------------------------------*/
@@ -252,7 +348,7 @@ footer {
   width: 100%;
   height: 30px;
 }
-.board_wrap .board > tbody > tr:nth-child(odd){
+.board_wrap .board > tbody > tr:nth-child(odd) {
   background-color: #cfcfcf;
   padding: 10px;
 }
@@ -268,7 +364,6 @@ footer {
 }
 .board_wrap .board > tbody > tr .title {
   width: 50%;
-
 }
 .board_wrap .board > tbody > tr .writer,
 .write_date {
@@ -318,7 +413,7 @@ footer {
 .post_wrap .post > tbody > tr .post_title {
   width: 80%;
 }
-.post_wrap .post > tbody > tr .post_title > input{
+.post_wrap .post > tbody > tr .post_title > input {
   padding: 10px;
   width: 100%;
   height: 100%;
@@ -335,7 +430,7 @@ footer {
   padding-right: 30px;
   font-size: 24px;
 }
-.post_wrap .post > tbody > tr .post_value > select{
+.post_wrap .post > tbody > tr .post_value > select {
   width: 100%;
   height: 100%;
   border: none;
@@ -343,7 +438,7 @@ footer {
   text-align: left;
   background-color: #ffffff;
 }
-.post_wrap .post > tbody > tr .post_value > select > option{
+.post_wrap .post > tbody > tr .post_value > select > option {
   font-size: 18px;
 }
 
@@ -352,7 +447,7 @@ footer {
   padding-left: 10px;
   padding-right: 30px;
 }
-.post_wrap .post > tbody > tr .post_text > textarea{
+.post_wrap .post > tbody > tr .post_text > textarea {
   width: 100%;
   height: 200px;
   border: none;
