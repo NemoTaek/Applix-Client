@@ -149,10 +149,12 @@ class App extends Component {
             <Route path="/about" component={About} />
 
             <Route path="/board">
-              <Board handleBoardView={handleBoardView} />
+              <Board handleBoardView={handleBoardView} nickname={nickname} />
             </Route>
 
-            <Route path="/newpost" component={NewPost}></Route>
+            <Route path="/newpost" >
+              <NewPost nickname={nickname} />
+            </Route>
 
             <Route path="/viewpost">
               <ViewPost currentPost={currentPost} />
