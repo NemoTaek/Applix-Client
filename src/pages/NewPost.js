@@ -77,40 +77,30 @@ class NewPost extends Component {
         <table className="post">
           <tbody>
             <tr>
-              <td className="item">제목</td>
-              <td>
-                <input
-                  className="post_title"
-                  onChange={handleTitleChange.bind(this)}
-                ></input>
+              <td className="post_item">글 제목</td>
+              <td className="post_title" colSpan="3">
+                <input onChange={handleTitleChange.bind(this)}></input>
               </td>
             </tr>
+
             <tr>
-              <td className="item">장르</td>
-              <td>
-                <select
-                  className="post_genre"
-                  defaultValue=""
-                  onChange={handleGenreChange.bind(this)}
-                >
+              <td className="post_item">장르</td>
+              <td className="post_value">
+                <select defaultValue="" onChange={handleGenreChange.bind(this)}>
                   <option value=""></option>
                   <option value="액션">액션</option>
                   <option value="멜로">멜로</option>
                   <option value="스릴러">스릴러</option>
                 </select>
               </td>
+              <td className="post_item">닉네임</td>
+              <td className="post_value">된다</td>
             </tr>
+
             <tr>
-              <td className="item">닉네임</td>
-              <td className="post_nickname">된다</td>
-            </tr>
-            <tr>
-              <td className="item">내용</td>
-              <td>
-                <textarea
-                  className="post_text"
-                  onChange={handleContentChange.bind(this)}
-                ></textarea>
+              <td className="post_item">내용</td>
+              <td className="post_text" colSpan="3">
+                <textarea onChange={handleContentChange.bind(this)} ></textarea>
               </td>
             </tr>
           </tbody>
