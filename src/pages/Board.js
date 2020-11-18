@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import BoardItem from "../components/BoardItem";
+import NewPost from "./NewPost";
 
 class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
       post_data: [],
+      nickname: this.props.nickname
     };
     console.log("보드 Headers : ", axios.defaults.headers);
     axios
@@ -23,14 +26,16 @@ class Board extends Component {
       });
   }
 
-  newPost = () => {
-    document.location.href = "/newpost";
+  newPost = (e) => {
+    e.preventDefault();
+    return (
+      <NewPost nickname={this.props.nickname} />
+    );
   };
+
 
   render() {
     const { post_data } = this.state;
-    const { newPost } = this;
-    //app 에서 받아온 props 함수
     const { handleBoardView } = this.props;
 
     return (
@@ -58,8 +63,8 @@ class Board extends Component {
           <button className="new_post_btn prev_btn">
             이전 목록
           </button>
-          <button className="new_post_btn" onClick={newPost}>
-            글쓰기
+          <button className="new_post_btn" onClick={this.newPost}>
+            <Link to="/newpost">글쓰기</Link>
           </button>
           <button className="new_post_btn next_btn">
             다음 목록

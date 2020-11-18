@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 import React, { Component } from "react";
 // import { Link } from "react-router-dom";
 
@@ -10,20 +10,8 @@ class NewPost extends Component {
       post_title: "",
       post_genre: "",
       post_content: "",
+      nickname: this.props.nickname
     };
-
-    // axios.get("http://3.35.208.49:5000/mypage")
-    //   .then((res) => {
-    //     // mypage 들어오면 닉네임을 받아와야 함
-    //     if (res.status === 201) {
-    //       this.setState({
-    //         nickname: res.data
-    //       })
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   })
   }
 
   handleTitleChange = (e) => {
@@ -45,23 +33,22 @@ class NewPost extends Component {
   };
 
   goBoard = () => {
-    // const { post_title, post_genre, post_content } = this.state;
-    // const postData = { post_title: post_title, post_genre: post_genre, post_content: post_content };
+    const { post_title, post_genre, post_content } = this.state;
+    const postData = { title: post_title, genre: post_genre, contents: post_content };
 
-    // axios.post("http://3.35.208.49:5000/post", postData)
-    //   .then((res) => {
-    //     // 회원가입에 성공하면 로그인 페이지로 이동
-    //     if (res.status === 201) {
-    //       document.location.href = "/board";
-    //     }
-    //     else if (!post_title || !post_genre || !post_content) {
-    //       alert("모든 칸을 입력해주세요");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   })
-    document.location.href = "/board";
+    axios.post("http://3.35.208.49:5000/board/newpost", postData)
+      .then((res) => {
+        // 회원가입에 성공하면 로그인 페이지로 이동
+        if (res.status === 201) {
+          document.location.href = "/board";
+        }
+        else if (res.status === 422) {
+          alert("모든 칸을 입력해주세요");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   };
 
   render() {
@@ -94,7 +81,7 @@ class NewPost extends Component {
                 </select>
               </td>
               <td className="post_item">닉네임</td>
-              <td className="post_value">된다</td>
+              <td className="post_value">{this.props.nickname}</td>
             </tr>
 
             <tr>
