@@ -8,7 +8,7 @@ class Board extends Component {
     this.state = {
       post_data: [],
     };
-
+    console.log("보드 Headers : ", axios.defaults.headers);
     axios
       .get("http://3.35.208.49:5000/board")
       .then((res) => {

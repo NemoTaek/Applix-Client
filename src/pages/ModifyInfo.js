@@ -1,6 +1,13 @@
 import axios from "axios";
 import React, { Component } from "react";
 
+axios.interceptors.request.use(function (config) {
+  const getToken = document.cookie.split("=");
+  config.headers.Authorization = getToken[1];
+
+  return config;
+});
+
 class ModifyInfo extends Component {
   constructor(props) {
     super(props);
@@ -8,8 +15,8 @@ class ModifyInfo extends Component {
       email: localStorage.getItem("ApplixID"),
       password: "",
       nickname: this.props.nickname,
-      errorMessage: ""
-    }
+      errorMessage: "",
+    };
   }
 
   handlePasswordChange = (e) => {
@@ -24,12 +31,12 @@ class ModifyInfo extends Component {
     });
   };
 
-  ModifyCheck = (e) => {
+  ModifyCheck = async (e) => {
     e.preventDefault();
     let error = document.getElementsByClassName("error")[0];
-    const { email, password, nickname } = this.state;
-    const modifyData = { email: email, password: password, nickName: nickname };
-
+    const { password, nickname } = this.state;
+    const modifyData = { password: password, nickName: nickname };
+    console.log("정보변경 Headers : ", axios.defaults.headers);
     if (!modifyData.password || modifyData.password.length < 8) {
       error.style.display = "block";
       error.textContent = "비밀번호는 8자리 이상이어야 합니다.";
@@ -39,7 +46,7 @@ class ModifyInfo extends Component {
     } else {
       error.style.display = "none";
 
-      axios
+      await axios
         .put("http://3.35.208.49:5000/mypage/userinfo", modifyData)
         .then((res) => {
           // 회원가입에 성공하면 로그인 페이지로 이동
