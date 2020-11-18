@@ -30,7 +30,7 @@ const moviegerne = [
 
 class MovieList extends Component {
   state = {
-    searchKeyword: "아이언맨",
+    searchKeyword: "",
     searchGenre: "",
     errorValue: "",
     movies: null,
@@ -201,7 +201,8 @@ class MovieList extends Component {
               onChange={updateKeyword.bind(this)}
             />
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 onSearch();
               }}
             >

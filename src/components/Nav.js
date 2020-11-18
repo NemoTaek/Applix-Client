@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
-// import homeicon from "../img/icon_home.png";
+import logo from "../pages/logo.png";
 
 class Nav extends Component {
   state = {
@@ -13,7 +13,7 @@ class Nav extends Component {
       isOpen: !prev.isOpen,
     }));
 
-    e.target.classList.toggle("active");
+    // e.target.classList.toggle("active");
   }
 
   render() {
@@ -25,7 +25,10 @@ class Nav extends Component {
     return (
       <div>
         <nav>
-          <div className="ham-menu" onClick={setIsMenuOpen.bind(this)}>
+          <div
+            className={this.state.isOpen ? "ham-menu active" : "ham-menu"}
+            onClick={setIsMenuOpen.bind(this)}
+          >
             <span></span>
             <span></span>
             <span></span>
@@ -34,26 +37,31 @@ class Nav extends Component {
             className={this.state.isOpen ? "open" : "close"}
             onClick={setIsMenuOpen.bind(this)}
           >
-            {isLogin ? (
+            {/* {isLogin ? (
               <li>
                 <NavLink
                   exact
                   to={`/userid=${userid}`}
                   activeClassName="selected"
                 >
-                  {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
+                  홈
                 </NavLink>
               </li>
             ) : (
               <li>
                 <NavLink exact to="/" activeClassName="selected">
-                  {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
+                  홈
                 </NavLink>
               </li>
-            )}
+            )} */}
             <li>
-              <NavLink to="/findtheater" activeClassName="selected">
-                영화관찾기
+              <NavLink
+                to="/findtheater"
+                className="navlogo"
+                activeClassName="navlogo selected"
+              >
+                {/* <img src={logo} className="navlogo" alt="logo" /> */}
+                APPLIX
               </NavLink>
             </li>
             <li>

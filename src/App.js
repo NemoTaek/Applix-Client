@@ -21,9 +21,10 @@ class App extends Component {
   state = {
     isLogin: false,
     isModalopen: false,
+    isMainOpen: false,
     userid: null,
     nickname: null,
-    currentPost: null
+    currentPost: null,
   };
 
   onLogin = async (userid, nickname, accessToken) => {
@@ -59,6 +60,14 @@ class App extends Component {
     }
   };
 
+  setisMainOpen = () => {
+    this.setState((prevState) => ({
+      isMainOpen: !prevState.isMainOpen,
+    }));
+
+    document.body.style.overflowY = "scroll";
+  };
+
   setisModalOpen = () => {
     this.setState((prevState) => ({
       isModalopen: !prevState.isModalopen,
@@ -81,12 +90,20 @@ class App extends Component {
   };
 
   render() {
-    const { isLogin, isModalopen, userid, nickname, currentPost } = this.state;
+    const {
+      isLogin,
+      isModalopen,
+      isMainOpen,
+      userid,
+      nickname,
+      currentPost,
+    } = this.state;
     //핸들링 함수
     const {
       handleLogoutClose,
       setisModalClose,
       setisModalOpen,
+      setisMainOpen,
       onLogin,
       handleBoardView,
     } = this;
@@ -141,7 +158,9 @@ class App extends Component {
                 setisModalOpen={setisModalOpen}
               />
             </Route>
-            <Route exact path="/" component={Main} />
+            <Route exact path="/">
+              <Main isMainOpen={isMainOpen} setisMainOpen={setisMainOpen} />
+            </Route>
           </Switch>
         </div>
         <footer></footer>

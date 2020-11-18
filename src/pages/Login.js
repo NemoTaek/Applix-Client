@@ -13,6 +13,12 @@ class Login extends Component {
     rememberchecked: JSON.parse(localStorage.getItem("rmbChkbox")) || false,
   };
 
+  handleKeyevent = (e) => {
+    if (e.key === "Enter") {
+      this.handleLogin(e);
+    }
+  };
+
   handleEmailChange = (e) => {
     this.setState({
       emailValue: e.target.value,
@@ -111,6 +117,7 @@ class Login extends Component {
       handlePasswordChange,
       handleLogin,
       onCheckboxChangeHandler,
+      handleKeyevent,
     } = this;
 
     return (
@@ -125,6 +132,7 @@ class Login extends Component {
                 passwordValue={passwordValue}
                 onEmailChange={handleEmailChange.bind(this)}
                 onPasswordChange={handlePasswordChange.bind(this)}
+                handleKeyevent={handleKeyevent}
               />
               <div className="rememberChkbox">
                 <input
