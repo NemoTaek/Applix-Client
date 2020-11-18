@@ -26,7 +26,7 @@ class ViewPost extends Component {
                 {this.props.currentPost.genre}
               </td>
               <td className="post_item">닉네임</td>
-              <td className="post_value">된다</td>
+              <td className="post_value"></td>
             </tr>
 
             <tr>
