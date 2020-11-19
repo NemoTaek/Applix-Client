@@ -75,10 +75,11 @@ class CheckPassword extends Component {
     return (
       <div className="check_password_wrap">
         <div className="signup password">
-          <span className="span">password: </span>
+          <span className="span">password</span>
           <input
             className="input input_password"
             type="password"
+            placeholder="비밀번호를 입력해주세요"
             onChange={handlePasswordCheck}
             onKeyPress={handleKeyevent}
           ></input>

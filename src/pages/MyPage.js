@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import movieIcon from "../img/movie.svg";
+import pencil from "../img/pencil.svg";
+import posts from "../img/posts.svg";
 
 class MyPage extends Component {
   state = {
@@ -41,14 +43,22 @@ class MyPage extends Component {
 
         <div className="mypage_list">
           <div className="list">
-            <Link to="/board">내가 쓴 게시글 목록</Link>
+            <Link to="/board">
+              <img src={posts} alt="icon" />
+              <p>내가 쓴 게시글 목록</p>
+            </Link>
           </div>
           <div className="list">
-            {/* <img src={movieIcon} alt="" /> */}
-            <Link to="/movielist">내가 찜한 영화 목록</Link>
+            <Link to="/movielist">
+              <img src={movieIcon} alt="icon" />
+              <p>내가 찜한 영화 목록</p>
+            </Link>
           </div>
           <div className="list">
-            <Link to="/mypage/checkpassword">회원정보 변경</Link>
+            <Link to="/mypage/checkpassword">
+              <img src={pencil} alt="icon" />
+              <p>회원정보변경</p>
+            </Link>
           </div>
         </div>
       </div>
