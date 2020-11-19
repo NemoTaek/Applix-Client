@@ -47,7 +47,6 @@ class ViewPost extends Component {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data)
           document.location.href = "/board";
         }
       })

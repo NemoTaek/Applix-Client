@@ -64,6 +64,7 @@ class NewPost extends Component {
     axios
       .post("http://3.35.208.49:5000/board/newpost", postData)
       .then((res) => {
+        console.log(res.data);
         document.location.href = "/board";
       })
       .catch((error) => {
