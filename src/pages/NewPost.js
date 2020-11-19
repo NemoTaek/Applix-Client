@@ -60,7 +60,7 @@ class NewPost extends Component {
       genre: post_genre,
       contents: post_content,
     };
-
+    console.log("새글쓰기", axios.defaults.headers.common.Authorization);
     axios
       .post("http://3.35.208.49:5000/board/newpost", postData)
       .then((res) => {

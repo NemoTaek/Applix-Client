@@ -579,5 +579,6 @@ body::-webkit-scrollbar-track {
 
 input:focus {
   background: rgb(212, 212, 212);
-  color: white;
+  color: black;
+  font-weight: bold;
 }
