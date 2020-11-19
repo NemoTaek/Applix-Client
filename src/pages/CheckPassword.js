@@ -25,10 +25,16 @@ class CheckPassword extends Component {
   };
 
   handlePassword = async () => {
-    // const { password } = this.state;
-    console.log(this.state.email);
-    console.log(this.state.password);
-    console.log("패스워드 Headers : ", axios.defaults.headers);
+    console.log(
+      "현재이메일:",
+      this.state.email,
+      "패스워드:",
+      this.state.password
+    );
+
+    const saveToken = document.cookie.replaceAll("=", "; ").split("; ");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${saveToken[1]}`;
+
     await axios
       // .post("서버 주소/login", userData)
       .post("http://3.35.208.49:5000/mypage/checkpassword", {

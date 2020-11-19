@@ -46,16 +46,17 @@ class ModifyInfo extends Component {
     } else {
       error.style.display = "none";
 
-      const getToken = document.cookie.split("=");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${getToken[1]}`;
+      const saveToken = document.cookie.replaceAll("=", "; ").split("; ");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${saveToken[1]}`;
 
       await axios
         .put("http://3.35.208.49:5000/mypage/userinfo", modifyData)
         .then((res) => {
-          // console.log(res.data);
+          // console.log("마이페이지성공", res.data);
           // 회원정보 변경에 성공하면 mypage로 이동
           if (res.status === 200) {
-            document.location.href = "/";
+            document.cookie = `nick=${nickname}`;
+            document.location.href = "/mypage";
           } else if (res.status === 409) {
             error.style.display = "block";
             this.setState({
@@ -77,7 +78,6 @@ class ModifyInfo extends Component {
       ModifyCheck,
       handleKeyevent,
     } = this;
-    console.log(nickname);
 
     return (
       <div className="signup_wrap">
@@ -118,7 +118,7 @@ class ModifyInfo extends Component {
         <p className="error">{errorMessage}</p>
 
         <button className="signup_btn" onClick={ModifyCheck}>
-          수정 완료
+          수정완료
         </button>
       </div>
     );
