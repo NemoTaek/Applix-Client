@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Board from "./pages/Board";
 import NewPost from "./pages/NewPost";
 import ViewPost from "./pages/ViewPost";
+import ModifyPost from "./pages/ModifyPost";
 import MovieList from "./pages/MovieList";
 import About from "./pages/About";
 // components
@@ -164,6 +165,10 @@ class App extends Component {
 
             <Route path="/viewpost">
               <ViewPost currentPost={currentPost} />
+            </Route>
+
+            <Route path="/modifypost">
+              <ModifyPost currentPost={currentPost} />
             </Route>
 
             <Route path="/movielist">
