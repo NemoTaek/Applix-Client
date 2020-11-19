@@ -1,9 +1,65 @@
+import axios from "axios";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ModifyPost from "./ModifyPost";
 
 class ViewPost extends Component {
   //글수정하기 및 글삭제하기를 보낼 때, 해당 post id를 보내줘야 함.
   //userid인지 확인하기
+
+  // componentDidMount() {
+  //   axios
+  //     .get("http://3.35.208.49:5000/board/openpost", {
+  //       params: {
+  //         id: this.props.currentPost.id
+  //       }
+  //     })
+  //     .then((res) => {
+  //       if (res.status === 200) {
+  //         console.log(res.data)
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       if (error.request) {
+  //         // 500 : server error
+  //         this.setState({
+  //           errorValue: "로그인 후 시도해주세요!",
+  //         });
+  //       }
+  //     });
+  // }
+
+  modifyPost = (e) => {
+    e.preventDefault();
+    console.log(this.props)
+    return (
+      <ModifyPost currentPost={this.props.currentPost} />
+    );
+  };
+
+  deletePost = (e) => {
+    e.preventDefault();
+    axios
+      .get("http://3.35.208.49:5000/board/deletepost", {
+        params: {
+          id: this.props.currentPost.id
+        }
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data)
+          document.location.href = "/board";
+        }
+      })
+      .catch((error) => {
+        if (error.request) {
+          // 500 : server error
+          this.setState({
+            errorValue: "로그인 후 시도해주세요!",
+          });
+        }
+      });
+  };
 
   render() {
     // console.log("View", this.props);
@@ -35,11 +91,13 @@ class ViewPost extends Component {
         </table>
 
         <div className="view_button_wrap">
-          <button className="modify_post_btn">글 수정하기</button>
+          <button className="modify_post_btn" onClick={this.modifyPost}>
+            <Link to="/modifypost">글 수정하기</Link>
+          </button>
           <button className="new_post_btn">
             <Link to="/board">목록으로</Link>
           </button>
-          <button className="remove_post_btn">글 삭제하기</button>
+          <button className="remove_post_btn" onClick={this.deletePost}>글 삭제하기</button>
         </div>
       </div>
     );

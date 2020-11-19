@@ -439,6 +439,8 @@ input {
 }
 .post_wrap .post > tbody > tr .post_title {
   width: 80%;
+  text-align: left;
+  padding-left: 10px;
 }
 .post_wrap .post > tbody > tr .post_title > input {
   padding: 10px;
@@ -472,6 +474,7 @@ input {
   width: 100%;
   padding-left: 10px;
   padding-right: 30px;
+  text-align: left;
 }
 .post_wrap .post > tbody > tr .post_text > textarea {
   width: 100%;
