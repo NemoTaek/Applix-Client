@@ -6,7 +6,7 @@ function Modal({ isModalopen, errorValue, setisModalOpen }) {
       <div className="Modal">
         {errorValue === "로그인 후 시도해주세요!" ? (
           <>
-            <h2>🏷 로그인을 하면 찜 가능!</h2>
+            <h2>🏷 로그인하면 이용할 수 있어요!</h2>
             <p>{errorValue || "관리자에게 문의하세요"}</p>
             <button
               className="moveLogin"
