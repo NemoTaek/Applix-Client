@@ -29,6 +29,65 @@ header {
   top: 50px;
 }
 
+/*---------- Modal message ----------*/
+.Modalcontent {
+  visibility: hidden;
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.Modalcontent .Modal {
+  width: 400px;
+  height: 30%;
+  padding: 80px 30px 30px 30px;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 6px rgba(0, 0, 0, 0.2);
+}
+
+.Modalcontent .Modal div {
+  margin: 20px;
+}
+
+.Modalcontent .Modal p {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.Modalcontent .Modal button {
+  width: 25px;
+  height: 25px;
+  border: transparent;
+  border-radius: 3px;
+  color: white;
+  background-color: tomato;
+  cursor: pointer;
+}
+
+.Modalcontent .Modal button:hover {
+  font-weight: bold;
+  background-color: black;
+}
+
+.Modalcontent .Modal .moveLogin,
+.Modalcontent .Modal .movePrev {
+  width: 120px;
+  height: 40px;
+  margin: 3px;
+  border-radius: 5px;
+}
+
+.Modalcontent.show {
+  visibility: visible;
+}
+
 input {
   text-align: center;
 }
@@ -80,15 +139,18 @@ input {
 .mypage_wrap .info {
   width: 100%;
   padding: 10px;
-  border-top: red 5px solid;
-  border-bottom: red 5px solid;
+}
+.mypage_wrap .info > p{
+  font-size: 36px;
+}
+.mypage_wrap .info > p > span{
+  font-size: 72px;
+  color: pink;
 }
 
 .mypage_wrap .mypage_list {
   width: 100%;
   padding: 10px;
-  border-top: blue 5px solid;
-  border-bottom: blue 5px solid;
 }
 
 .mypage_wrap .mypage_list .list {
@@ -98,6 +160,7 @@ input {
   padding: 10px;
   border: green 5px solid;
   cursor: pointer;
+  font-size: 36px;
 }
 
 /* -------------------------check password css-------------------------------*/
@@ -117,48 +180,66 @@ footer {
 }
 
 /* -------------------------board css-------------------------------*/
-.board_wrap, .post_wrap{
+.board_wrap,
+.post_wrap {
   width: 100%;
   height: 100vh;
+  padding: 10px;
+  margin-top: 30px;
 }
 
-.board_wrap .board, .post_wrap .post{
+.board_wrap .board,
+.post_wrap .post {
   width: 100%;
   border: black 1px solid;
   border-collapse: collapse;
+  font-size: 24px;
 }
 
-.board_wrap .board > tbody > tr, .post_wrap .post > tbody > tr{
+.board_wrap .board > tbody > tr,
+.post_wrap .post > tbody > tr {
   width: 100%;
   height: 30px;
 }
-.board_wrap .board > tbody > tr:first-child{
+.board_wrap .board > tbody > tr:first-child {
   height: 50px;
+  background-color: #ff7e7c;
 }
 
-.board_wrap .board > tbody > tr .no, .genre{
+.board_wrap .board > tbody > tr > th, td{
+  border: black 1px solid;
+  padding: 10px;
+}
+
+.board_wrap .board > tbody > tr .no,
+.genre {
   width: 10%;
 }
-.board_wrap .board > tbody > tr .title{
+.board_wrap .board > tbody > tr .title {
   width: 50%;
+
 }
-.board_wrap .board > tbody > tr .writer, .write_date{
+.board_wrap .board > tbody > tr .writer,
+.write_date {
   width: 15%;
 }
 
-.board_wrap .board > tbody > tr > td{
+.board_wrap .board > tbody > tr > td {
   border-top: black 1px solid;
 }
 
-.board_wrap .board_button_wrap, .post_wrap .post_button_wrap{
+.board_wrap .board_button_wrap,
+.post_wrap .post_button_wrap {
   width: 100%;
   height: 30px;
   margin-top: 20px;
 }
-.board_wrap .board_button_wrap .new_post_btn, .post_wrap .post_button_wrap .new_post_btn{
-  width: 100px;
-  height: 30px;
+.board_wrap .board_button_wrap .new_post_btn,
+.post_wrap .post_button_wrap .new_post_btn {
   float: right;
+  font-size: 24px;
+  padding: 10px;
+  background-color: #00e1ff;
 }
 
 /* -------------------------newpost css-------------------------------*/
@@ -167,32 +248,74 @@ footer {
   height: 30px;
 } */
 
-.post_wrap .post > tbody > tr .item{
+.post_wrap .post > tbody > tr .item {
   width: 20%;
   text-align: center;
 }
 
-.post_wrap .post > tbody > tr > td{
+.post_wrap .post > tbody > tr > td {
   width: 80%;
-  height: 50px;
+  height: 100px;
   text-align: left;
+  font-size: 36px;
 }
 
-.post_wrap .post > tbody > tr .post_title{
+.post_wrap .post > tbody > tr .post_title {
   width: 90%;
   height: 50%;
   float: left;
+  text-align: left;
+  padding-left: 10px;
+  font-size: 24px;
 }
-.post_wrap .post > tbody > tr .post_genre{
+.post_wrap .post > tbody > tr .post_genre {
   width: 30%;
   height: 50%;
   float: left;
+  padding-left: 10px;
+  font-size: 24px;
 }
-.post_wrap .post > tbody > tr .post_nickname{
+.post_wrap .post > tbody > tr .post_nickname {
   text-align: left;
+  font-size: 24px;
 }
-.post_wrap .post > tbody > tr .post_text{
-  width: 90%;
+.post_wrap .post > tbody > tr .post_text {
+  width: 100%;
   height: 200px;
   float: left;
+  padding: 10px;
+  font-size: 24px;
+}
+/* ------------------------scrollbar css-------------------------------*/
+body::-webkit-scrollbar {
+  /* 스크롤바 전체 */
+  width: 15px;
+  height: 10px;
+}
+body::-webkit-scrollbar-thumb {
+  /* 스크롤바 막대 */
+  background: black;
+}
+body::-webkit-scrollbar-track {
+  /* 스크롤바 막대외부 */
+  background: transparent;
+}
+/* -------------------------Login error css-------------------------------*/
+.errorPtag {
+  margin-top: 20px;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+}
+
+.error {
+  margin-top: 20px;
+  width: 100%;
+  height: 25px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
 }

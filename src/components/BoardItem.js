@@ -2,54 +2,32 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ViewPost from "../pages/ViewPost";
 
-// function BoardItem(props) {
-//   function viewPost() {
-//     return (
-//       <ViewPost post_data={props.post_data} />
-//     );
-//     // document.location.href = "/viewpost";
-//   }
-
-//   return (
-//     <tr>
-//       <td>{props.post_data.id}</td>
-//       <td>{props.post_data.gener}</td>
-//       <td onClick={viewPost}>
-//         <Link to="/viewpost">{props.post_data.title}</Link>
-//       </td>
-//       <td>{props.post_data.UserId}</td>
-//       <td>{props.post_data.createdAt}</td>
-//     </tr>
-//   );
-// }
-
-// 추후에 수정할 것
-// gener -> genre
-// UserId -> nickName
-
 class BoardItem extends Component {
-  viewPost = () => {
-    console.log(this.props);
+  viewPost = (e) => {
+    e.preventDefault();
+    let currentPost = this.props.post_data;
+    this.props.handleBoardView(currentPost);
+    console.log(currentPost)
     return (
-      <ViewPost post_data={this.props.post_data} />
+      <ViewPost currentPost={currentPost} />
     );
-  }
+  };
 
   render() {
-    const { viewPost } = this;
+    const writeDate = this.props.post_data.createdAt.substring(0, 10);
+    const modifyDate = this.props.post_data.updatedAt.substring(0, 10);
     return (
-      <tr>
+      <tr onClick={this.viewPost}>
         <td>{this.props.post_data.id}</td>
-        <td>{this.props.post_data.gener}</td>
-        <td onClick={viewPost}>
+        <td>{this.props.post_data.genre}</td>
+        <td>
           <Link to="/viewpost">{this.props.post_data.title}</Link>
         </td>
-        <td>{this.props.post_data.UserId}</td>
-        <td>{this.props.post_data.createdAt}</td>
+        <td>{writeDate}</td>
+        <td>{modifyDate}</td>
       </tr>
     );
   }
 }
-
 
 export default BoardItem;
