@@ -30,6 +30,22 @@ class App extends Component {
     currentPost: null,
   };
 
+  componentDidMount() {
+    const saveToken = document.cookie.replaceAll("=", "; ").split("; ");
+
+    console.log("App", saveToken);
+
+    if (saveToken[1]) {
+      // 브라우저에 쿠키가 저장되어있다면 헤더값을 현재 로그인한 인증헤더로 유지한다.
+      axios.defaults.headers.common["Authorization"] = `Bearer ${saveToken[1]}`;
+
+      this.setState((prevState) => ({
+        isLogin: !prevState.isLogin,
+        nickname: saveToken[3],
+      }));
+    }
+  }
+
   onLogin = async (userid, nickname, accessToken) => {
     // 로그인이 되면 axios Headers 인증 키에 accessToken 값 설정
     axios.defaults.headers.common[
@@ -42,10 +58,16 @@ class App extends Component {
       userid: userid,
       nickname: nickname,
     }));
+    document.cookie = `nick=${nickname}`;
+
     console.log("현재 로그인상태", this.state);
     // console.log("accessToken : ", accessToken.token);
-    // console.log("axiosHeaders : ", axios.defaults.headers);
+    console.log("axiosHeaders : ", axios.defaults.headers.common.Authorization);
   };
+
+  delCookie(name) {
+    document.cookie = name + `=;`;
+  }
 
   //로그아웃 핸들링 - 서버
   handleLogoutClose = async () => {
@@ -61,6 +83,9 @@ class App extends Component {
       }));
       // axios 헤더 초기화
       axios.defaults.headers.common["Authorization"] = null;
+
+      this.delCookie("sid");
+      this.delCookie("nick");
     } catch (error) {
       throw error;
     }

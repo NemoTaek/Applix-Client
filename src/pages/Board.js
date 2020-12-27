@@ -16,6 +16,13 @@ class Board extends Component {
   }
 
   componentDidMount() {
+    const saveToken = document.cookie.replaceAll("=", "; ").split("; ");
+
+    if (saveToken[1]) {
+      // 브라우저에 쿠키가 저장되어있다면 헤더값을 현재 로그인한 인증헤더로 유지한다.
+      axios.defaults.headers.common["Authorization"] = `Bearer ${saveToken[1]}`;
+    }
+
     axios
       .get("http://3.35.208.49:5000/board")
       .then((res) => {
