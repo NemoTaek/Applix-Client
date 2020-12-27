@@ -18,6 +18,7 @@ import Logout from "./components/Logout";
 import axios from "axios";
 
 class App extends Component {
+
   state = {
     isLogin: false,
     isModalopen: false,
@@ -29,6 +30,7 @@ class App extends Component {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${accessToken.token}`;
+
 
     this.setState((prevState) => ({
       isLogin: !prevState.isLogin,
