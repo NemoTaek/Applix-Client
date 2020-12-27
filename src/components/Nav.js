@@ -3,23 +3,64 @@ import { NavLink } from "react-router-dom";
 import "./Nav.css";
 
 class Nav extends Component {
+  state = {
+    isOpen: false,
+  };
+
+  setIsMenuOpen(e) {
+    this.setState((prev) => ({
+      isOpen: !prev.isOpen,
+    }));
+
+    // e.target.classList.toggle("active");
+  }
+
   render() {
-    const { isLogin } = this.props;
+    const { isLogin, userid } = this.props;
     //props 핸들링 함수
     const { handleLogoutClose } = this.props;
-
+    const { setIsMenuOpen } = this;
+    // document.addEventListener("click", setIsMenuOpen, false);
     return (
       <div>
         <nav>
-          <ul>
+          <div
+            className={this.state.isOpen ? "ham-menu active" : "ham-menu"}
+            onClick={setIsMenuOpen.bind(this)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul
+            className={this.state.isOpen ? "open" : "close"}
+            onClick={setIsMenuOpen.bind(this)}
+          >
+            {/* {isLogin ? (
+              <li>
+                <NavLink
+                  exact
+                  to={`/userid=${userid}`}
+                  activeClassName="selected"
+                >
+                  홈
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink exact to="/" activeClassName="selected">
+                  홈
+                </NavLink>
+              </li>
+            )} */}
             <li>
-              <NavLink exact to="/" activeClassName="selected">
-                배너 이미지(HOME)
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/findtheater" activeClassName="selected">
-                영화관찾기
+              <NavLink
+                to="/about"
+                className="navlogo"
+                activeClassName="navlogo selected"
+              >
+                {/* <img src={logo} className="navlogo" alt="logo" /> */}
+                APPLIX
               </NavLink>
             </li>
             <li>
@@ -35,7 +76,10 @@ class Nav extends Component {
             {isLogin ? (
               <>
                 <li onClick={handleLogoutClose}>
-                  <NavLink to="/logout" activeClassName="selected">
+                  <NavLink
+                    to={`/logout/userid=${userid}`}
+                    activeClassName="selected"
+                  >
                     로그아웃
                   </NavLink>
                 </li>
