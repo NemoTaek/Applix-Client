@@ -8,6 +8,39 @@
   outline: none;
 }
 
+body {
+  position: relative;
+  overflow: hidden;
+}
+
+/*---------- Main(Home) page ----------*/
+
+.Main-logo {
+  margin-top: -50px;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.Main {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 200px;
+  font-family: "Bebas Neue", cursive;
+  /* calc(10px + 2vmin); */
+  color: rgb(104, 10, 10);
+}
+
+.Main.hidden {
+  visibility: hidden;
+}
+
 header {
   width: 100%;
   height: 50px;
@@ -27,6 +60,11 @@ header {
   text-align: center;
   position: relative;
   top: 50px;
+}
+
+.Main {
+  z-index: 9999;
+  margin-top: -50px;
 }
 
 /*---------- Modal message ----------*/
@@ -98,14 +136,17 @@ input {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  background-color: #f2f2f2;
 }
 
 .signup > span {
   display: inline-block;
   width: 150px;
   height: 30px;
-  font-size: 20px;
+  /* font-size: 20px; */
   text-align: left;
+  padding-left: 20px;
+  font-weight: bold;
 }
 
 .signup > input {
@@ -113,12 +154,22 @@ input {
   width: 300px;
   height: 50px;
   font-size: 15px;
+  border: 0px;
+  border-left: 2px solid #cccccc;
 }
 
 .signup_btn {
   width: 450px;
   height: 50px;
-  font-size: 20px;
+  /* font-size: 20px; */
+  color: white;
+  background-color: black;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.signup_btn:hover {
+  background-color: gray;
 }
 
 .error {
@@ -137,30 +188,135 @@ input {
 }
 
 .mypage_wrap .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 430px;
   padding: 10px;
 }
-.mypage_wrap .info > p{
+.mypage_wrap .info > p {
   font-size: 36px;
+  border-bottom: 2px solid gray;
+  padding-bottom: 20px;
 }
-.mypage_wrap .info > p > span{
+.mypage_wrap .info > p > span {
   font-size: 72px;
   color: pink;
 }
 
 .mypage_wrap .mypage_list {
   width: 100%;
-  padding: 10px;
+  padding: 30px;
 }
 
-.mypage_wrap .mypage_list .list {
+.mypage_list .list {
   display: inline-block;
-  width: 33.3%;
-  height: 100%;
+  width: 30%;
+  height: 300px;
+  line-height: 230px;
   padding: 10px;
-  border: green 5px solid;
+  margin: 5px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 36px;
+  /* font-size: 36px; */
+}
+
+.mypage_list .list {
+  margin-top: 20px;
+  background-color: black;
+  border-radius: 10px;
+  color: white;
+}
+.mypage_list a:visited {
+  color: white;
+}
+
+.mypage_list a:hover {
+  border-bottom: 2px soild black;
+}
+
+.mypage_list img {
+  width: 40px;
+}
+
+.mypage_list .list:hover {
+  background-color: tomato;
+
+  -webkit-animation-name: bounce;
+  animation-name: bounce;
+  -webkit-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
+  transform-origin: center bottom;
+
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+/*the animation definition*/
+@-webkit-keyframes bounce {
+  0%,
+  100%,
+  20%,
+  53%,
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
+}
+@keyframes bounce {
+  0%,
+  100%,
+  20%,
+  53%,
+  80% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  40%,
+  43% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -30px, 0);
+    -ms-transform: translate3d(0, -30px, 0);
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    -webkit-transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transition-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    -webkit-transform: translate3d(0, -15px, 0);
+    -ms-transform: translate3d(0, -15px, 0);
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    -webkit-transform: translate3d(0, -4px, 0);
+    -ms-transform: translate3d(0, -4px, 0);
+    transform: translate3d(0, -4px, 0);
+  }
 }
 
 /* -------------------------check password css-------------------------------*/
@@ -170,30 +326,22 @@ input {
   font-size: 20px;
 }
 
-/* -------------------------modify info css-------------------------------*/
-
-footer {
-  bottom: 0;
-  width: 100%;
-  height: 150px;
-  background-color: black;
-}
-
 /* -------------------------board css-------------------------------*/
 .board_wrap,
 .post_wrap {
   width: 100%;
   height: 100vh;
-  padding: 10px;
-  margin-top: 30px;
 }
 
 .board_wrap .board,
 .post_wrap .post {
   width: 100%;
-  border: black 1px solid;
-  border-collapse: collapse;
-  font-size: 24px;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.board_wrap .board a:visited {
+  color: tomato;
 }
 
 .board_wrap .board > tbody > tr,
@@ -201,91 +349,157 @@ footer {
   width: 100%;
   height: 30px;
 }
+
+.board_wrap .board > tbody > tr:nth-child(odd) {
+  background-color: #dadada;
+  padding: 10px;
+}
 .board_wrap .board > tbody > tr:first-child {
   height: 50px;
-  background-color: #ff7e7c;
-}
-
-.board_wrap .board > tbody > tr > th, td{
-  border: black 1px solid;
-  padding: 10px;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .board_wrap .board > tbody > tr .no,
 .genre {
   width: 10%;
 }
+
 .board_wrap .board > tbody > tr .title {
   width: 50%;
-
 }
+
 .board_wrap .board > tbody > tr .writer,
 .write_date {
   width: 15%;
 }
 
-.board_wrap .board > tbody > tr > td {
-  border-top: black 1px solid;
+.board_wrap .board > tbody > tr th:nth-of-type(1) {
+  border-top-left-radius: 10px;
+}
+
+.board_wrap .board > tbody > tr th:nth-of-type(5) {
+  border-top-right-radius: 10px;
 }
 
 .board_wrap .board_button_wrap,
 .post_wrap .post_button_wrap {
   width: 100%;
-  height: 30px;
   margin-top: 20px;
 }
-.board_wrap .board_button_wrap .new_post_btn,
-.post_wrap .post_button_wrap .new_post_btn {
-  float: right;
-  font-size: 24px;
+
+.board_wrap .board_button_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.board_wrap .board_button_wrap button,
+.post_wrap .post_button_wrap button,
+.view_button_wrap button {
+  background-color: black;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  width: 150px;
   padding: 10px;
-  background-color: #00e1ff;
+  cursor: pointer;
+}
+
+.board_wrap .board_button_wrap button:hover,
+.post_wrap .post_button_wrap button:hover,
+.view_button_wrap button:hover {
+  background-color: gray;
+}
+
+.board_wrap .board_button_wrap a:visited,
+.post_wrap .post_button_wrap a:visited,
+.view_button_wrap a:visited {
+  color: white;
 }
 
 /* -------------------------newpost css-------------------------------*/
-/* .post_wrap .post > tbody > tr{
-  width: 100%;
-  height: 30px;
-} */
-
 .post_wrap .post > tbody > tr .item {
   width: 20%;
   text-align: center;
 }
 
 .post_wrap .post > tbody > tr > td {
-  width: 80%;
-  height: 100px;
-  text-align: left;
-  font-size: 36px;
+  height: 50px;
+  text-align: center;
+  border: black 1px solid;
 }
 
+.post_wrap .post > tbody > tr .post_item {
+  width: 20%;
+  background-color: #000000;
+  color: #ffffff;
+}
 .post_wrap .post > tbody > tr .post_title {
-  width: 90%;
-  height: 50%;
-  float: left;
+  width: 80%;
   text-align: left;
   padding-left: 10px;
+}
+.post_wrap .post > tbody > tr .post_title > input {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: left;
   font-size: 24px;
 }
-.post_wrap .post > tbody > tr .post_genre {
+
+.post_wrap .post > tbody > tr .post_value {
   width: 30%;
   height: 50%;
-  float: left;
-  padding-left: 10px;
-  font-size: 24px;
+  text-align: center;
+  padding-right: 5px;
+  font-weight: bold;
 }
-.post_wrap .post > tbody > tr .post_nickname {
+.post_wrap .post > tbody > tr .post_value > select {
+  width: 100%;
+  height: 100%;
+  border: none;
   text-align: left;
-  font-size: 24px;
+  background-color: #ffffff;
 }
+
+.post_wrap .post > tbody > tr .post_value > select > option {
+  font-size: 15px;
+}
+
 .post_wrap .post > tbody > tr .post_text {
   width: 100%;
-  height: 200px;
-  float: left;
-  padding: 10px;
-  font-size: 24px;
+  padding-left: 10px;
+  padding-right: 30px;
+  text-align: left;
 }
+.post_wrap .post > tbody > tr .post_text > textarea {
+  width: 100%;
+  height: 200px;
+  border: none;
+  font-size: 20px;
+}
+
+.post_button_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+/* -------------------------view post css-------------------------------*/
+
+.view_button_wrap {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
 /* ------------------------scrollbar css-------------------------------*/
 body::-webkit-scrollbar {
   /* 스크롤바 전체 */

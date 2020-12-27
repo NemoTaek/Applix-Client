@@ -11,7 +11,9 @@ import Login from "./pages/Login";
 import Board from "./pages/Board";
 import NewPost from "./pages/NewPost";
 import ViewPost from "./pages/ViewPost";
+import ModifyPost from "./pages/ModifyPost";
 import MovieList from "./pages/MovieList";
+import About from "./pages/About";
 // components
 import Nav from "./components/Nav";
 import Logout from "./components/Logout";
@@ -22,9 +24,10 @@ class App extends Component {
   state = {
     isLogin: false,
     isModalopen: false,
+    isMainOpen: false,
     userid: null,
     nickname: null,
-    currentPost: null
+    currentPost: null,
   };
 
   onLogin = async (userid, nickname, accessToken) => {
@@ -56,9 +59,20 @@ class App extends Component {
         isModalopen: !prevState.isModalopen,
         userid: null,
       }));
+      // axios 헤더 초기화
+      axios.defaults.headers.common["Authorization"] = null;
     } catch (error) {
       throw error;
     }
+  };
+
+  setisMainOpen = () => {
+    this.setState((prevState) => ({
+      isMainOpen: !prevState.isMainOpen,
+    }));
+
+    document.location.href = "/about";
+    document.body.style.overflowY = "scroll";
   };
 
   setisModalOpen = () => {
@@ -83,12 +97,20 @@ class App extends Component {
   };
 
   render() {
-    const { isLogin, isModalopen, userid, nickname, currentPost } = this.state;
+    const {
+      isLogin,
+      isModalopen,
+      isMainOpen,
+      userid,
+      nickname,
+      currentPost,
+    } = this.state;
     //핸들링 함수
     const {
       handleLogoutClose,
       setisModalClose,
       setisModalOpen,
+      setisMainOpen,
       onLogin,
       handleBoardView,
     } = this;
@@ -118,21 +140,37 @@ class App extends Component {
             <Route exact path="/mypage">
               <MyPage nickname={nickname} />
             </Route>
+
             <Route path="/mypage/checkpassword" component={CheckPassword} />
-            <Route path="/modifyinfo" component={ModifyInfo} />
+
+            <Route path="/modifyinfo">
+              <ModifyInfo nickname={nickname} />
+            </Route>
 
             <Route path="/signup" component={Signup} />
 
-            <Route path="/findtheater" />
+            <Route path="/about" component={About} />
 
             <Route path="/board">
-              <Board handleBoardView={handleBoardView} />
+              <Board
+                handleBoardView={handleBoardView}
+                nickname={nickname}
+                isLogin={isLogin}
+                isModalopen={isModalopen}
+                setisModalOpen={setisModalOpen}
+              />
             </Route>
 
-            <Route path="/newpost" component={NewPost}></Route>
+            <Route path="/newpost">
+              <NewPost nickname={nickname} />
+            </Route>
 
             <Route path="/viewpost">
               <ViewPost currentPost={currentPost} />
+            </Route>
+
+            <Route path="/modifypost">
+              <ModifyPost currentPost={currentPost} />
             </Route>
 
             <Route path="/movielist">
@@ -143,13 +181,21 @@ class App extends Component {
                 setisModalOpen={setisModalOpen}
               />
             </Route>
-            <Route exact path="/" component={Main} />
+            <Route exact path="/">
+              <Main isMainOpen={isMainOpen} setisMainOpen={setisMainOpen} />
+            </Route>
           </Switch>
         </div>
-        <footer></footer>
       </div>
     );
   }
 }
 
 export default App;
+
+// axios.interceptors.request.use(function (config) {
+//   const getToken = document.cookie.split("=");
+//   config.headers.Authorization = getToken[1];
+
+//   return config;
+// });

@@ -23,14 +23,14 @@ const moviegerne = [
   "SF",
 ];
 
-class NewPost extends Component {
+class ModifyPost extends Component {
   constructor(props) {
     super(props);
     // console.log(props)
     this.state = {
-      post_title: "",
-      post_genre: "",
-      post_content: "",
+      post_title: this.props.currentPost.title,
+      post_genre: this.props.currentPost.genre,
+      post_content: this.props.currentPost.contents,
       nickname: this.props.nickname,
     };
   }
@@ -56,16 +56,19 @@ class NewPost extends Component {
   goBoard = () => {
     const { post_title, post_genre, post_content } = this.state;
     const postData = {
+      id: this.props.currentPost.id,
       title: post_title,
       genre: post_genre,
       contents: post_content,
     };
+    console.log(postData)
 
     axios
-      .post("http://3.35.208.49:5000/board/newpost", postData)
+      .post("http://3.35.208.49:5000/board/updatepost", postData)
       .then((res) => {
-        console.log(res.data);
-        document.location.href = "/board";
+        if (res.status === 201) {
+          document.location.href = "/board";
+        }
       })
       .catch((error) => {
         if (error.response) {
@@ -85,6 +88,7 @@ class NewPost extends Component {
       handleContentChange,
       goBoard,
     } = this;
+
     return (
       <div className="post_wrap">
         <table className="post">
@@ -92,14 +96,14 @@ class NewPost extends Component {
             <tr>
               <td className="post_item">글 제목</td>
               <td className="post_title" colSpan="3">
-                <input onChange={handleTitleChange.bind(this)}></input>
+                <input defaultValue={this.props.currentPost.title} onChange={handleTitleChange.bind(this)}></input>
               </td>
             </tr>
 
             <tr>
               <td className="post_item">장르</td>
               <td className="post_value">
-                <select defaultValue="" onChange={handleGenreChange.bind(this)}>
+                <select defaultValue={this.props.currentPost.genre} onChange={handleGenreChange.bind(this)}>
                   <option disabled hidden value=""></option>
                   {moviegerne.map((ele) => (
                     <option value={ele} key={ele}>
@@ -115,7 +119,7 @@ class NewPost extends Component {
             <tr>
               <td className="post_item">내용</td>
               <td className="post_text" colSpan="3">
-                <textarea onChange={handleContentChange.bind(this)}></textarea>
+                <textarea defaultValue={this.props.currentPost.contents} onChange={handleContentChange.bind(this)}></textarea>
               </td>
             </tr>
           </tbody>
@@ -127,7 +131,7 @@ class NewPost extends Component {
           </button>
 
           <button className="new_post_btn" onClick={goBoard}>
-            작성완료
+            수정완료
           </button>
         </div>
       </div>
@@ -135,4 +139,4 @@ class NewPost extends Component {
   }
 }
 
-export default NewPost;
+export default ModifyPost;

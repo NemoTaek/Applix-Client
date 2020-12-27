@@ -8,9 +8,15 @@ class CheckPassword extends Component {
       password: "",
       errorMessage: "",
       email: localStorage.getItem("ApplixID"),
-      nickname: ""
-    }
+      nickname: "",
+    };
   }
+
+  handleKeyevent = (e) => {
+    if (e.key === "Enter") {
+      this.handlePassword(e);
+    }
+  };
 
   handlePasswordCheck = (e) => {
     this.setState({
@@ -20,22 +26,22 @@ class CheckPassword extends Component {
 
   handlePassword = async () => {
     // const { password } = this.state;
-    console.log(this.state.email)
-    console.log(this.state.password)
-
+    console.log(this.state.email);
+    console.log(this.state.password);
+    console.log("패스워드 Headers : ", axios.defaults.headers);
     await axios
       // .post("서버 주소/login", userData)
       .post("http://3.35.208.49:5000/mypage/checkpassword", {
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
       })
       .then((res) => {
         if (res.status === 200) {
           this.setState({
             email: res.data.email,
             password: res.data.password,
-            nickname: res.data.nickName
-          })
+            nickname: res.data.nickName,
+          });
           document.location.href = "/modifyInfo";
         }
       })
@@ -55,21 +61,34 @@ class CheckPassword extends Component {
           console.log("error", error.message);
         }
       });
-  }
+  };
 
   render() {
-    const { handlePassword, handlePasswordCheck } = this;
+    const { handlePassword, handlePasswordCheck, handleKeyevent } = this;
     const { email, password, nickname, errorMessage } = this.state;
     return (
       <div className="check_password_wrap">
         <div className="signup password">
           <span className="span">password: </span>
-          <input className="input input_password" type="password" onChange={handlePasswordCheck.bind(this)}></input>
+          <input
+            className="input input_password"
+            type="password"
+            onChange={handlePasswordCheck}
+            onKeyPress={handleKeyevent}
+          ></input>
         </div>
 
         <p className="error">{errorMessage}</p>
 
-        <button className="check_btn" onClick={handlePassword} email={email} password={password} nickname={nickname}>확인</button>
+        <button
+          className="check_btn"
+          onClick={handlePassword}
+          email={email}
+          password={password}
+          nickname={nickname}
+        >
+          확인
+        </button>
       </div>
     );
   }

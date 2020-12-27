@@ -8,30 +8,31 @@ import Modal from "../components/Modal";
 // console.log(params);
 // {1,액션} 코드 값 넣어야함..
 const moviegerne = [
-  { code: 1, value: "드라마" },
-  { code: 2, value: "판타지" },
-  { code: 3, value: "서부" },
-  { code: 4, value: "공포" },
-  { code: 5, value: "로맨스" },
-  { code: 6, value: "모험" },
-  { code: 7, value: "스릴러" },
-  { code: 8, value: "느와르" },
-  { code: 9, value: "컬트" },
-  { code: 10, value: "다큐멘터리" },
-  { code: 11, value: "코미디" },
-  { code: 12, value: "가족" },
-  { code: 13, value: "미스터리" },
-  { code: 14, value: "전쟁" },
-  { code: 15, value: "애니메이션" },
-  { code: 16, value: "범죄" },
-  { code: 17, value: "뮤지컬" },
-  { code: 18, value: "SF" },
+  { code: 1, name: "드라마" },
+  { code: 2, name: "판타지" },
+  { code: 3, name: "서부" },
+  { code: 4, name: "공포" },
+  { code: 5, name: "로맨스" },
+  { code: 6, name: "모험" },
+  { code: 7, name: "스릴러" },
+  { code: 8, name: "느와르" },
+  { code: 9, name: "컬트" },
+  { code: 10, name: "다큐멘터리" },
+  { code: 11, name: "코미디" },
+  { code: 12, name: "가족" },
+  { code: 13, name: "미스터리" },
+  { code: 14, name: "전쟁" },
+  { code: 15, name: "애니메이션" },
+  { code: 16, name: "범죄" },
+  { code: 17, name: "뮤지컬" },
+  { code: 18, name: "SF" },
 ];
 
 class MovieList extends Component {
   state = {
-    searchKeyword: "아이언맨",
+    searchKeyword: "",
     searchGenre: "",
+    sendGenre: "",
     errorValue: "",
     movies: null,
   };
@@ -43,9 +44,16 @@ class MovieList extends Component {
   }
 
   updateGenre(e) {
+    let sendName = moviegerne.filter(
+      (ele) => Number(e.target.value) === ele.code
+    );
+
     this.setState({
       searchGenre: e.target.value,
+      sendGenre: sendName[0].name,
     });
+
+    console.log(this.state);
   }
 
   handleKeyevent = (e) => {
@@ -57,7 +65,7 @@ class MovieList extends Component {
   onSearch = async () => {
     const { searchKeyword, searchGenre } = this.state;
     const { setisModalOpen } = this.props;
-
+    //유효성 검사
     if (searchKeyword === "") {
       this.setState({
         errorValue: "검색어가 비었네요!",
@@ -130,13 +138,18 @@ class MovieList extends Component {
       actor: data.actor,
       image: data.image,
       link: data.link,
-      genre: this.state.searchGenre,
+      genre: this.state.sendGenre,
     };
+
+    const wishCount = 0;
     // 로그인한 유저이면 전송이 가능하고, 로그인 안한 유저는 불가능하다.
     if (isLogin) {
       await axios
         .post("http://3.35.208.49:5000/search", sendWishBody)
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          localStorage.setItem(`wish${userid}?${wishCount}`, data.title);
+        })
         .catch((error) => {
           if (error.response) {
             // 409 : 중복되는 찜목록
@@ -188,8 +201,8 @@ class MovieList extends Component {
             <select value={searchGenre} onChange={updateGenre.bind(this)}>
               <option disabled hidden value=""></option>
               {moviegerne.map((ele) => (
-                <option value={ele.code} key={ele.code}>
-                  {ele.value}
+                <option value={ele.code} key={ele.code} name={ele.name}>
+                  {ele.name}
                 </option>
               ))}
             </select>
@@ -201,7 +214,8 @@ class MovieList extends Component {
               onChange={updateKeyword.bind(this)}
             />
             <button
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 onSearch();
               }}
             >

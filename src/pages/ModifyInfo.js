@@ -7,10 +7,16 @@ class ModifyInfo extends Component {
     this.state = {
       email: localStorage.getItem("ApplixID"),
       password: "",
-      nickname: this.props.nickname,
-      errorMessage: ""
-    }
+      nickname: "",
+      errorMessage: "",
+    };
   }
+
+  handleKeyevent = (e) => {
+    if (e.key === "Enter") {
+      this.ModifyCheck(e);
+    }
+  };
 
   handlePasswordChange = (e) => {
     this.setState({
@@ -24,12 +30,13 @@ class ModifyInfo extends Component {
     });
   };
 
-  ModifyCheck = (e) => {
+  ModifyCheck = async (e) => {
     e.preventDefault();
     let error = document.getElementsByClassName("error")[0];
-    const { email, password, nickname } = this.state;
-    const modifyData = { email: email, password: password, nickName: nickname };
+    const { password, nickname } = this.state;
+    const modifyData = { password: password, nickName: nickname };
 
+    console.log("정보변경 Headers : ", axios.defaults.headers);
     if (!modifyData.password || modifyData.password.length < 8) {
       error.style.display = "block";
       error.textContent = "비밀번호는 8자리 이상이어야 합니다.";
@@ -39,10 +46,14 @@ class ModifyInfo extends Component {
     } else {
       error.style.display = "none";
 
-      axios
+      const getToken = document.cookie.split("=");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${getToken[1]}`;
+
+      await axios
         .put("http://3.35.208.49:5000/mypage/userinfo", modifyData)
         .then((res) => {
-          // 회원가입에 성공하면 로그인 페이지로 이동
+          // console.log(res.data);
+          // 회원정보 변경에 성공하면 mypage로 이동
           if (res.status === 200) {
             document.location.href = "/";
           } else if (res.status === 409) {
@@ -60,7 +71,13 @@ class ModifyInfo extends Component {
 
   render() {
     const { email, password, nickname, errorMessage } = this.state;
-    const { handlePasswordChange, handleNicknameChange, ModifyCheck } = this;
+    const {
+      handlePasswordChange,
+      handleNicknameChange,
+      ModifyCheck,
+      handleKeyevent,
+    } = this;
+    console.log(nickname);
 
     return (
       <div className="signup_wrap">
@@ -82,6 +99,7 @@ class ModifyInfo extends Component {
             placeholder="비밀번호는 8자리 이상"
             password={password}
             onChange={handlePasswordChange.bind(this)}
+            onKeyPress={handleKeyevent}
           ></input>
         </div>
 
@@ -93,6 +111,7 @@ class ModifyInfo extends Component {
             defaultValue={nickname}
             nickname={nickname}
             onChange={handleNicknameChange.bind(this)}
+            onKeyPress={handleKeyevent}
           ></input>
         </div>
 
@@ -105,19 +124,5 @@ class ModifyInfo extends Component {
     );
   }
 }
-
-// function getMypage() {
-//   axios.get('/mypage', {
-//     headers: {
-//       session: req.session.userid
-//     }
-//   })
-//     .then(function (response) {
-//       console.log(response);
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     })
-// }
 
 export default ModifyInfo;
