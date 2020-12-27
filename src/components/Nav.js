@@ -1,20 +1,56 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
+// import homeicon from "../img/icon_home.png";
 
 class Nav extends Component {
-  render() {
-    const { isLogin } = this.props;
+  state = {
+    isOpen: false,
+  };
 
+  setIsMenuOpen(e) {
+    this.setState((prev) => ({
+      isOpen: !prev.isOpen,
+    }));
+
+    e.target.classList.toggle("active");
+  }
+
+  render() {
+    const { isLogin, userid } = this.props;
+    //props 핸들링 함수
+    const { handleLogoutClose } = this.props;
+    const { setIsMenuOpen } = this;
+    // document.addEventListener("click", setIsMenuOpen, false);
     return (
       <div>
         <nav>
-          <ul>
-            <li>
-              <NavLink exact to="/" activeClassName="selected">
-                배너 이미지(HOME)
-              </NavLink>
-            </li>
+          <div className="ham-menu" onClick={setIsMenuOpen.bind(this)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul
+            className={this.state.isOpen ? "open" : "close"}
+            onClick={setIsMenuOpen.bind(this)}
+          >
+            {isLogin ? (
+              <li>
+                <NavLink
+                  exact
+                  to={`/userid=${userid}`}
+                  activeClassName="selected"
+                >
+                  {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
+                </NavLink>
+              </li>
+            ) : (
+              <li>
+                <NavLink exact to="/" activeClassName="selected">
+                  {/* <img src={homeicon} alt="homeiconimg" /> */} 홈
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink to="/findtheater" activeClassName="selected">
                 영화관찾기
@@ -32,8 +68,11 @@ class Nav extends Component {
             </li>
             {isLogin ? (
               <>
-                <li>
-                  <NavLink to="/logout" activeClassName="selected">
+                <li onClick={handleLogoutClose}>
+                  <NavLink
+                    to={`/logout/userid=${userid}`}
+                    activeClassName="selected"
+                  >
                     로그아웃
                   </NavLink>
                 </li>

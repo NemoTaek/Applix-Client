@@ -1,0 +1,89 @@
+.generalLogin {
+  width: 50%;
+  height: 500px;
+}
+
+.generalLogin .input {
+  width: 100%;
+  height: 150px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+}
+
+.generalLogin .input label {
+  text-align: left;
+  padding: 10px;
+}
+
+.generalLogin .input input {
+  flex: 1;
+  /* font-size: 1.25rem; */
+  width: 100%;
+  height: 20px;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #cccccc;
+}
+
+.rememberChkbox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  padding: 20px 20px 0px 20px;
+  /* background-color: tomato; */
+}
+
+.rememberChkbox input {
+  margin-right: 10px;
+}
+
+.generalLogin .generalLoginBtn {
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  color: white;
+  background-color: black;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.generalLogin .generalLoginBtn:hover {
+  background-color: gray;
+}
+
+.generalLogin hr {
+  margin-top: 30px;
+  border-top: 1px dashed black;
+}
+
+/* socialLogin  */
+.socialLogin {
+  border-bottom: 1px dashed black;
+}
+
+.socialLogin h2 {
+  margin-top: 20px;
+}
+
+.socialLogin .btn-social-login {
+  margin: 30px;
+  transition: all 0.2s;
+  outline: 0;
+  border: 1px solid transparent;
+  padding: 0.5rem !important;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.socialLogin .btn-social-login:focus {
+  box-shadow: 0 0 0 0.2rem rgba(83, 83, 83, 0.25);
+}
+
+.socialLogin .text-dark {
+  color: #343a40 !important;
+}
